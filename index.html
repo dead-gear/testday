@@ -78,7 +78,8 @@ const FEEDBACK_URL="https://tally.so/r/VLZ8la";
 const VERSION="0.9.1-alpha";
 
 /* ─── HOOKS ─── */
-function useDark(){const[override,setOverride]=useState(null);const[sys,sSys]=useState(()=>window.matchMedia?.("(prefers-color-scheme:dark)").matches);useEffect(()=>{const m=window.matchMedia("(prefers-color-scheme:dark)");const h=e=>sSys(e.matches);m.addEventListener("change",h);return()=>m.removeEventListener("change",h)},[]);const dk=override!==null?override:sys;const toggle=useCallback(()=>setOverride(prev=>prev!==null?prev?false:true:sys?false:true),[sys]);return[dk,toggle]}
+function ls(k,v){if(v===undefined){try{const r=localStorage.getItem("td_"+k);return r?JSON.parse(r):null}catch{return null}}if(v===null){try{localStorage.removeItem("td_"+k)}catch{}}else{try{localStorage.setItem("td_"+k,JSON.stringify(v))}catch{}}}
+function useDark(){const[override,setOverride]=useState(()=>ls("dk"));const[sys,sSys]=useState(()=>window.matchMedia?.("(prefers-color-scheme:dark)").matches);useEffect(()=>{const m=window.matchMedia("(prefers-color-scheme:dark)");const h=e=>sSys(e.matches);m.addEventListener("change",h);return()=>m.removeEventListener("change",h)},[]);useEffect(()=>{ls("dk",override)},[override]);const dk=override!==null?override:sys;const toggle=useCallback(()=>setOverride(prev=>prev!==null?prev?false:true:sys?false:true),[sys]);return[dk,toggle]}
 function useRoll(t,ms=500){const[v,s]=useState(t);const r=useRef(null);useEffect(()=>{const st=v,d=t-st;if(!d)return;const t0=performance.now();const tick=now=>{const p=Math.min((now-t0)/ms,1);s(Math.round(st+d*(1-Math.pow(1-p,3))));if(p<1)r.current=requestAnimationFrame(tick)};r.current=requestAnimationFrame(tick);return()=>cancelAnimationFrame(r.current)},[t]);return v}
 function useSlider(init,min,max,onChange){
   const ref=useRef(null);const[drag,sD]=useState(false);
@@ -145,217 +146,217 @@ const SKILLS=[
 ];
 
 const ROUTES=[
-  {id:"r1",name:"Clontarf Coastal Loop",dur:35,diff:3,centre:"raheny",
+  {id:"r1",name:"Clontarf Coastal Loop",dur:35,diff:3,km:12.9,centre:"raheny",
    skills:["lanechange", "hillstart", "reversecorner", "turnabout", "observation"],
    desc:"Watermill Rd → coast → Mount Prospect → Baymount → Conquer Hill → Chelsea Gardens → Vernon Ave",
    tips:["Check right mirror past hatched markings","1st gear for right at mini roundabouts","Park tight to kerb before turnabout"],
    addressWaypoints:["Watermill+Road,+Raheny,+Dublin","Clontarf+Road+near+Bull+Wall,+Clontarf,+Dublin+3","Mount+Prospect+Avenue,+Clontarf,+Dublin+3","Baymount+Park,+Clontarf,+Dublin","Conquer+Hill+Road,+Clontarf,+Dublin","Chelsea+Gardens,+Clontarf,+Dublin","Vernon+Avenue,+Clontarf,+Dublin"]},
-  {id:"r2",name:"Raheny Village",dur:23,diff:2,centre:"raheny",
+  {id:"r2",name:"Raheny Village",dur:23,diff:2,km:7.7,centre:"raheny",
    skills:["roundabouts", "junctions", "observation"],
    desc:"Village → Harmonstown Rd → Springdale → Ennafort → return",
    tips:["MSPSL at every junction","Yield to right at roundabouts","1m clearance from parked cars"],
    addressWaypoints:["Main+Street,+Raheny,+Dublin+5","Harmonstown+Road,+Raheny,+Dublin+5","Springdale+Road,+Raheny,+Dublin+5","Ennafort+Park,+Raheny,+Dublin+5"]},
-  {id:"r3",name:"Artane Roundabout",dur:30,diff:4,centre:"raheny",
+  {id:"r3",name:"Artane Roundabout",dur:30,diff:4,km:8.1,centre:"raheny",
    skills:["roundabouts", "junctions", "rightturns"],
    desc:"Howth Rd → Artane Castle roundabout → Kilmore Rd. #1 fail location.",
    tips:["Green = proceed to middle, wait, turn","Follow road markings at roundabout","Let other driver commit first"],
    addressWaypoints:["Howth+Road,+Raheny,+Dublin+5","Artane+Castle+Shopping+Centre,+Artane,+Dublin+5","Kilmore+Road,+Artane,+Dublin+5"]},
-  {id:"r4",name:"Killester Residential",dur:16,diff:1,centre:"killester",
+  {id:"r4",name:"Killester Residential",dur:16,diff:1,km:5.3,centre:"killester",
    skills:["junctions", "hillstart", "observation"],
    desc:"Quiet residential → Howth Rd → Cill Eanna. Confidence builder.",
    tips:["GOSHO every stop","Build confidence here","Smooth starts — no jerking"],
    addressWaypoints:["Killester+Avenue,+Dublin+5","Howth+Road,+Killester,+Dublin+5","Cill+Eanna,+Raheny,+Dublin+5"]},
-  {id:"r5",name:"Dollymount Coast",dur:30,diff:3,centre:"raheny",
+  {id:"r5",name:"Dollymount Coast",dur:30,diff:3,km:10.1,centre:"raheny",
    skills:["lanechange", "observation", "reversecorner"],
    desc:"Watermill → Clontarf coast (Dollymount) → St Assam's → return",
    tips:["Signal early","Drop speed for narrowing","Firm grip in wind"],
    addressWaypoints:["Watermill+Road,+Raheny,+Dublin","Clontarf+Road,+Dollymount,+Dublin+3","St+Assams+Road,+Raheny,+Dublin+5"]},
-  {id:"r6",name:"Harmonstown Deep",dur:24,diff:2,centre:"killester",
+  {id:"r6",name:"Harmonstown Deep",dur:24,diff:2,km:7.3,centre:"killester",
    skills:["turnabout", "junctions", "hillstart"],
    desc:"Harmonstown → Avondale Park → Brookwood Ave → return",
    tips:["Check all around before reversing","Bite point → handbrake → mirror → go","30-40km/h in residential"],
    addressWaypoints:["Harmonstown+Road,+Raheny,+Dublin+5","Avondale+Park,+Raheny,+Dublin+5","Brookwood+Avenue,+Artane,+Dublin+5"]},
-  {id:"r7",name:"Edenmore Extension",dur:33,diff:4,centre:"raheny",
+  {id:"r7",name:"Edenmore Extension",dur:33,diff:4,km:10.4,centre:"raheny",
    skills:["lanechange", "roundabouts", "hillstart", "observation"],
    desc:"Edenmore → Artane Castle → Malahide Rd → return",
    tips:["Scan markings 50m ahead","Don't force gaps","Bus lanes: 7-10am & 4-7pm Mon-Sat"],
    addressWaypoints:["Edenmore+Drive,+Raheny,+Dublin+5","Artane+Castle+Shopping+Centre,+Artane,+Dublin+5","Malahide+Road,+Artane,+Dublin+5"]},
-  {id:"r8",name:"Full Test Simulation",dur:42,diff:5,centre:"raheny",
+  {id:"r8",name:"Full Test Simulation",dur:42,diff:5,km:13.4,centre:"raheny",
    skills:["observation"],
    desc:"Every manoeuvre, every terrain, all hazards. The gauntlet.",
    tips:["Only after others done twice","Practice at expected test time","Handle this → test feels easier"],
    addressWaypoints:["Raheny+Road,+Raheny,+Dublin+5","Artane+Castle+Shopping+Centre,+Artane,+Dublin+5","Clontarf+Road,+Dollymount,+Dublin+3","Ennafort+Park,+Raheny,+Dublin+5","Cill+Eanna,+Raheny,+Dublin+5"]},
-  {id:"f1",name:"Ballygall Residential",dur:11,diff:2,centre:"finglas",
+  {id:"f1",name:"Ballygall Residential",dur:11,diff:2,km:4.2,centre:"finglas",
    skills:["reversecorner", "turnabout", "roundabouts", "junctions"],
    desc:"Jamestown Rd → Clancy Ave → McKee Rd → Finglas Park → Ballygall Ave → Glasnevin Ave → return",
    tips:["1st gear for the Clancy Ave turn — slow right down","Yield to right at every mini roundabout","Check mirrors before and after each speed ramp"],
    addressWaypoints:["Clancy+Avenue,+Finglas,+Dublin+11","McKee+Road,+Finglas,+Dublin+11","Finglas+Park,+Finglas,+Dublin+11","Ballygall+Avenue,+Finglas,+Dublin+11","Glasnevin+Avenue,+Dublin+11"]},
-  {id:"f2",name:"Cedarwood Estate",dur:24,diff:2,centre:"finglas",
+  {id:"f2",name:"Cedarwood Estate",dur:24,diff:2,km:7.9,centre:"finglas",
    skills:["reversecorner", "turnabout", "junctions", "observation"],
    desc:"Jamestown Rd → Sycamore Rd → Cedarwood Rd → reverse & turnabout → return",
    tips:["This is a manoeuvre-focused route — nail reverse and turnabout here","2nd gear over speed ramps at 20km/h","Check all around before reversing"],
    addressWaypoints:["Sycamore+Road,+Finglas,+Dublin+11","Cedarwood+Road,+Finglas,+Dublin+11","Cedarwood+Park,+Finglas,+Dublin+11","Oakwood+Park,+Finglas,+Dublin+11"]},
-  {id:"f3",name:"Willow Park Loop",dur:33,diff:3,centre:"finglas",
+  {id:"f3",name:"Willow Park Loop",dur:33,diff:3,km:13.2,centre:"finglas",
    skills:["lanechange", "roundabouts", "hillstart", "observation"],
    desc:"Ballygall Rd → Willow Park → Grove Park → Beneavin Drive → Glasilawn → return",
    tips:["2nd gear approaching roundabouts at 20km/h","Read road markings 50m ahead at roundabouts","Bus lanes: check hours on signs — 7-10am & 4-7pm"],
    addressWaypoints:["Ballygall+Road+West,+Finglas,+Dublin+11","Willow+Park+Road,+Finglas,+Dublin+11","Grove+Park+Avenue,+Finglas,+Dublin+11","Beneavin+Drive,+Finglas,+Dublin+11","Glasilawn+Road,+Finglas,+Dublin+11"]},
-  {id:"f4",name:"Finglas Village",dur:27,diff:4,centre:"finglas",
+  {id:"f4",name:"Finglas Village",dur:27,diff:4,km:9.6,centre:"finglas",
    skills:["lanechange", "junctions", "rightturns", "observation"],
    desc:"Jamestown → N2 → Finglas Village one-way → Seamus Ennis Rd → Beneavin → return. #1 fail zone.",
    tips:["The village right turn is NOT the first right you see","Watch for cars overtaking on the outside when turning right","Position early in the correct lane — last-minute changes fail here"],
    addressWaypoints:["Old+Finglas+Road,+Finglas,+Dublin+11","Finglas+Road,+Finglas+Village,+Dublin+11","Seamus+Ennis+Road,+Finglas,+Dublin+11","Beneavin+Road,+Finglas,+Dublin+11","Ballygall+Road+East,+Dublin+11"]},
-  {id:"f5",name:"Glasnevin North",dur:30,diff:3,centre:"finglas",
+  {id:"f5",name:"Glasnevin North",dur:30,diff:3,km:12.3,centre:"finglas",
    skills:["junctions", "observation"],
    desc:"Glasnevin Ave → Tolka Estate → Griffith Ave Extension → Ballygall Rd East → return",
    tips:["Full MSPSL at every junction","Anticipate lights — ease off early rather than harsh braking","Keep left unless overtaking or turning right"],
    addressWaypoints:["Glasnevin+Avenue,+Dublin+11","Tolka+Estate,+Finglas,+Dublin+11","Griffith+Avenue+Extension,+Dublin+11","Ballygall+Road+East,+Dublin+11"]},
-  {id:"f6",name:"Pinewood Hill Circuit",dur:19,diff:3,centre:"finglas",
+  {id:"f6",name:"Pinewood Hill Circuit",dur:19,diff:3,km:6.6,centre:"finglas",
    skills:["turnabout", "roundabouts", "hillstart", "observation"],
    desc:"Willow Park → Pinewood Ave → Cedarwood Rise → hill start → return via Glasnevin Ave",
    tips:["Handbrake up fully for hill start — find bite point before releasing","Signal early at mini roundabouts","1m clearance from parked cars minimum"],
    addressWaypoints:["Willow+Park+Road,+Finglas,+Dublin+11","Pinewood+Avenue,+Finglas,+Dublin+11","Cedarwood+Rise,+Finglas,+Dublin+11","Willow+Park+Crescent,+Finglas,+Dublin+11","Grove+Park+Road,+Finglas,+Dublin+11"]},
-  {id:"f7",name:"Full Finglas Simulation",dur:37,diff:5,centre:"finglas",
+  {id:"f7",name:"Full Finglas Simulation",dur:37,diff:5,km:14.4,centre:"finglas",
    skills:["observation"],
    desc:"All manoeuvres, village one-way, N2 junction, roundabouts, estates. The gauntlet.",
    tips:["Only attempt after completing other Finglas routes twice","Practice at expected test time","If you handle this, the test feels easier"],
    addressWaypoints:["Clancy+Avenue,+Finglas,+Dublin+11","McKee+Road,+Finglas,+Dublin+11","Ballygall+Road+West,+Finglas,+Dublin+11","Willow+Park+Road,+Finglas,+Dublin+11","Finglas+Road,+Finglas+Village,+Dublin+11","Seamus+Ennis+Road,+Finglas,+Dublin+11"]},
-  {id:"t1",name:"Redwood Residential",dur:25,diff:2,centre:"tallaght",
+  {id:"t1",name:"Redwood Residential",dur:25,diff:2,km:11.0,centre:"tallaght",
    skills:["reversecorner", "turnabout", "junctions", "observation"],
    desc:"Broomhill → Greenhills → Mayberry Rd → Redwood estate → reverse & turnabout → return",
    tips:["2nd gear for speed ramps at 20km/h","Full observation before reversing","Redwood Way is the classic reverse spot — practice it"],
    addressWaypoints:["Greenhills+Road,+Tallaght,+Dublin+24","Mayberry+Road,+Tallaght,+Dublin+24","Redwood+Drive,+Tallaght,+Dublin+24","Redwood+Park,+Tallaght,+Dublin+24"]},
-  {id:"t2",name:"Kilnamanagh Loop",dur:39,diff:2,centre:"tallaght",
+  {id:"t2",name:"Kilnamanagh Loop",dur:39,diff:2,km:16.4,centre:"tallaght",
    skills:["roundabouts", "dualcarriage", "observation"],
    desc:"Airton Rd → Belgard Rd → Kilnamanagh estate → manoeuvres → return",
    tips:["Build to 60km/h on Belgard Road — don't stay at 50","Lane position early at roundabouts","Drop to 2nd gear for estate ramps"],
    addressWaypoints:["Airton+Road,+Tallaght,+Dublin+24","Belgard+Road,+Tallaght,+Dublin+24","Kilnamanagh+Road,+Tallaght,+Dublin+24","Parkhill+Road,+Tallaght,+Dublin+24"]},
-  {id:"t3",name:"Cookstown Industrial",dur:21,diff:3,centre:"tallaght",
+  {id:"t3",name:"Cookstown Industrial",dur:21,diff:3,km:8.6,centre:"tallaght",
    skills:["lanechange", "roundabouts", "junctions", "observation"],
    desc:"Belgard Rd → Belgard Square → Cookstown Way → Industrial Estate → Old Belgard Rd → return",
    tips:["Scan road markings well ahead at each roundabout","MSPSL for every lane change","Check for Luas trams at crossings — they have priority"],
    addressWaypoints:["Airton+Road,+Tallaght,+Dublin+24","Belgard+Road,+Tallaght,+Dublin+24","Belgard+Square+North,+Tallaght,+Dublin+24","Cookstown+Way,+Tallaght,+Dublin+24","Old+Belgard+Road,+Tallaght,+Dublin+24"]},
-  {id:"t4",name:"Tallaght Village Right Turn",dur:30,diff:4,centre:"tallaght",
+  {id:"t4",name:"Tallaght Village Right Turn",dur:30,diff:4,km:11.3,centre:"tallaght",
    skills:["lanechange", "observation"],
    desc:"Greenhills → Tallaght Village → right turn onto Greenhills Rd → Bancroft → return. #1 fail zone.",
    tips:["Wait for proper lane AFTER hatch markings — at the arrow","Keep right to show intention — lets left traffic pass","You cannot get faulted for obeying rules of the road"],
    addressWaypoints:["Greenhills+Road,+Tallaght,+Dublin+24","Main+Road,+Tallaght+Village,+Dublin+24","Bancroft+Road,+Tallaght,+Dublin+24","Castletymon+Road,+Tallaght,+Dublin+24","St+Aongus+Road,+Tallaght,+Dublin+24"]},
-  {id:"t5",name:"Tymon North",dur:46,diff:3,centre:"tallaght",
+  {id:"t5",name:"Tymon North",dur:46,diff:3,km:23.1,centre:"tallaght",
    skills:["roundabouts", "observation"],
    desc:"Greenhills → Tymon Rd North → St Aongus → Castle Lawns → manoeuvres → return",
    tips:["Slow and steady over ramps — hitting them fast = Grade 2 fault","Castle Lawns has numerous manoeuvre spots","30km/h in residential areas with ramps"],
    addressWaypoints:["Greenhills+Road,+Tallaght,+Dublin+24","Tymon+Road+North,+Tallaght,+Dublin+24","St+Aongus+Road,+Tallaght,+Dublin+24","Castle+Lawns,+Tallaght,+Dublin+24"]},
-  {id:"t6",name:"Belgard Heights & Cookstown",dur:37,diff:3,centre:"tallaght",
+  {id:"t6",name:"Belgard Heights & Cookstown",dur:37,diff:3,km:15.5,centre:"tallaght",
    skills:["lanechange", "roundabouts", "hillstart", "reversecorner"],
    desc:"Belgard Rd → Belgard Heights → Cookstown Rd → Old Belgard Rd → return",
    tips:["Belgard Heights is a common all-in-one manoeuvre spot","Plan your lane 100m before roundabouts","Industrial estate roads can be deceptively wide — stay left"],
    addressWaypoints:["Airton+Road,+Tallaght,+Dublin+24","Belgard+Road,+Tallaght,+Dublin+24","Belgard+Heights,+Tallaght,+Dublin+24","Cookstown+Road,+Tallaght,+Dublin+24","Old+Belgard+Road,+Tallaght,+Dublin+24"]},
-  {id:"t7",name:"Full Tallaght Simulation",dur:55,diff:5,centre:"tallaght",
+  {id:"t7",name:"Full Tallaght Simulation",dur:55,diff:5,km:23.7,centre:"tallaght",
    skills:["observation"],
    desc:"Village right turn, dual carriageway, Cookstown, residential manoeuvres. Everything.",
    tips:["Only after completing other Tallaght routes","Practice at your scheduled test time","Handle this and the test feels lighter"],
    addressWaypoints:["Greenhills+Road,+Tallaght,+Dublin+24","Main+Road,+Tallaght+Village,+Dublin+24","Airton+Road,+Tallaght,+Dublin+24","Belgard+Road,+Tallaght,+Dublin+24","Cookstown+Way,+Tallaght,+Dublin+24","Redwood+Drive,+Tallaght,+Dublin+24"]},
-  {id:"c1",name:"Landscape Local",dur:22,diff:1,centre:"churchtown",
+  {id:"c1",name:"Landscape Local",dur:22,diff:1,km:9.3,centre:"churchtown",
    skills:["reversecorner", "turnabout", "junctions", "observation"],
    desc:"Braemor Rd → Landscape Park → Landscape Ave → reverse & turnabout → return. Confidence builder.",
    tips:["Crawl out of the test centre — stop and look both ways","This is the gentlest introduction to the area","Master the centre exit before anything else"],
    addressWaypoints:["Braemor+Road,+Churchtown,+Dublin+14","Landscape+Park,+Churchtown,+Dublin+14","Landscape+Avenue,+Churchtown,+Dublin+14"]},
-  {id:"c2",name:"Orwell & Dartry",dur:24,diff:3,centre:"churchtown",
+  {id:"c2",name:"Orwell & Dartry",dur:24,diff:3,km:8.3,centre:"churchtown",
    skills:["reversecorner", "lanechange", "junctions", "hillstart"],
    desc:"Orwell Rd → Orwell Park → Dartry Rd → Temple Rd reverse → Highfield Rd → return",
    tips:["Temple Road is the classic Churchtown reverse spot","Bus lanes have hours — check signs","Position early for right turns at lights"],
    addressWaypoints:["Orwell+Road,+Rathgar,+Dublin+6","Orwell+Park,+Rathgar,+Dublin+6","Dartry+Road,+Dublin+6","Temple+Road,+Dartry,+Dublin+6","Highfield+Road,+Rathgar,+Dublin+6"]},
-  {id:"c3",name:"Rathmines & Cowper",dur:26,diff:4,centre:"churchtown",
+  {id:"c3",name:"Rathmines & Cowper",dur:26,diff:4,km:9.5,centre:"churchtown",
    skills:["lanechange", "rightturns", "observation"],
    desc:"Orwell → Dartry → Neville Rd → Rathmines Rd Upper → Cowper Rd → Palmerston → return",
    tips:["Mirror, signal, position EARLY for every right turn","Bus lanes: Mon-Sat 7-10am & 4-7pm typically","Palmerston is elegant but tight — 1m from parked cars"],
    addressWaypoints:["Orwell+Road,+Rathgar,+Dublin+6","Dartry+Road,+Dublin+6","Highfield+Road,+Rathgar,+Dublin+6","Rathmines+Road+Upper,+Dublin+6","Cowper+Road,+Dublin+6","Palmerston+Road,+Dublin+6"]},
-  {id:"c4",name:"Dropping Well Hill",dur:20,diff:3,centre:"churchtown",
+  {id:"c4",name:"Dropping Well Hill",dur:20,diff:3,km:7.7,centre:"churchtown",
    skills:["junctions", "hillstart", "observation"],
    desc:"Dartry → Dropping Well pub hill start → Milltown Rd → Churchtown Rd Lower → return",
    tips:["Handbrake fully up on the hill — no rollback tolerated","Find bite point before checking mirrors and releasing","Churchtown Rd Lower is a common hill start backup spot"],
    addressWaypoints:["Orwell+Road,+Rathgar,+Dublin+6","Orwell+Park,+Rathgar,+Dublin+6","Dartry+Road,+Dublin+6","Milltown+Road,+Dublin+6","Churchtown+Road+Lower,+Dublin+14"]},
-  {id:"c5",name:"Eaton Brae & Rathfarnham",dur:22,diff:3,centre:"churchtown",
+  {id:"c5",name:"Eaton Brae & Rathfarnham",dur:22,diff:3,km:8.7,centre:"churchtown",
    skills:["reversecorner", "turnabout", "hillstart", "observation"],
    desc:"Orwell Rd → Eaton Brae → Woodside Drive → Riverside Drive → return via Braemor",
    tips:["Eaton Brae and Green Park are classic turnabout/reverse spots","Riverside Drive: reverse around both corners for practice","These estates are quiet but testers expect full observation"],
    addressWaypoints:["Orwell+Road,+Rathgar,+Dublin+6","Eaton+Brae,+Rathgar,+Dublin+6","Woodside+Drive,+Rathfarnham,+Dublin+14","Riverside+Drive,+Rathfarnham,+Dublin+14","Braemor+Road,+Churchtown,+Dublin+14"]},
-  {id:"c6",name:"Rathgar Village",dur:26,diff:4,centre:"churchtown",
+  {id:"c6",name:"Rathgar Village",dur:26,diff:4,km:9.3,centre:"churchtown",
    skills:["lanechange", "rightturns", "observation"],
    desc:"Orwell → Rathgar Village lights → Church Ave → Rathmines → Dartry → return",
    tips:["Know the lane layout at Rathgar Village before you arrive","Church Avenue wraps around the church — stay left","This is the toughest direction from Churchtown — save it for later"],
    addressWaypoints:["Orwell+Road,+Rathgar,+Dublin+6","Rathgar+Road,+Rathgar,+Dublin+6","Church+Avenue,+Rathmines,+Dublin+6","Rathmines+Road+Upper,+Dublin+6","Dartry+Road,+Dublin+6"]},
-  {id:"c7",name:"Full Churchtown Simulation",dur:39,diff:5,centre:"churchtown",
+  {id:"c7",name:"Full Churchtown Simulation",dur:39,diff:5,km:15.6,centre:"churchtown",
    skills:["observation"],
    desc:"Centre exit, Rathgar, Rathmines, Dartry, all manoeuvres. Hardest Dublin centre at full intensity.",
    tips:["Only after mastering other Churchtown routes","The centre exit alone can set the tone — nail it first","If you pass this, Churchtown test day feels manageable"],
    addressWaypoints:["Orwell+Road,+Rathgar,+Dublin+6","Dartry+Road,+Dublin+6","Temple+Road,+Dartry,+Dublin+6","Rathmines+Road+Upper,+Dublin+6","Milltown+Road,+Dublin+6","Churchtown+Road+Lower,+Dublin+14"]},
-  {id:"d1",name:"Watsons Estate",dur:25,diff:2,centre:"dunlaoghaire",
+  {id:"d1",name:"Watsons Estate",dur:25,diff:2,km:12.0,centre:"dunlaoghaire",
    skills:["reversecorner", "turnabout", "junctions", "hillstart"],
    desc:"Pottery Rd → Johnstown Rd → Watsons Estate → all manoeuvres → return. Confidence builder.",
    tips:["Watsons Estate is THE manoeuvre spot — know it inside out","Slow right down exiting the test centre car park","This is the easiest Dún Laoghaire route — build confidence here"],
    addressWaypoints:["Pottery+Road,+Dun+Laoghaire,+Co+Dublin","Johnstown+Road,+Dun+Laoghaire,+Co+Dublin","Rochestown+Avenue,+Dun+Laoghaire,+Co+Dublin"]},
-  {id:"d2",name:"Monkstown Farm Loop",dur:17,diff:3,centre:"dunlaoghaire",
+  {id:"d2",name:"Monkstown Farm Loop",dur:17,diff:3,km:7.5,centre:"dunlaoghaire",
    skills:["lanechange", "roundabouts", "junctions", "observation"],
    desc:"Bakers Corner → Monkstown Farm → Sallynoggin → roundabouts → return",
    tips:["Bakers Corner: use the right slip lane, wait for filter light","Graduate roundabout: left lane for 1st exit, right for 2nd/3rd","Keep scanning ahead — roundabouts come fast in this area"],
    addressWaypoints:["Kill+Avenue,+Dun+Laoghaire,+Co+Dublin","Monkstown+Farm,+Dun+Laoghaire,+Co+Dublin","Sallynoggin+Road,+Dun+Laoghaire,+Co+Dublin","Rochestown+Avenue,+Dun+Laoghaire,+Co+Dublin"]},
-  {id:"d3",name:"Glenageary & Killiney",dur:24,diff:3,centre:"dunlaoghaire",
+  {id:"d3",name:"Glenageary & Killiney",dur:24,diff:3,km:11.8,centre:"dunlaoghaire",
    skills:["roundabouts", "observation"],
    desc:"Sallynoggin → Glenageary roundabout → Killiney Rd → Ballinclea Rd → Cluny Grove → return",
    tips:["Glenageary roundabout: signal and position early","Match 60km/h on Killiney Road — don't hold up traffic","Cluny Grove: check for cars before committing to reverse"],
    addressWaypoints:["Sallynoggin+Road,+Dun+Laoghaire,+Co+Dublin","Glenageary+Road,+Glenageary,+Co+Dublin","Killiney+Road,+Killiney,+Co+Dublin","Ballinclea+Road,+Killiney,+Co+Dublin","Cluny+Grove,+Killiney,+Co+Dublin"]},
-  {id:"d4",name:"Bakers Corner Challenge",dur:20,diff:4,centre:"dunlaoghaire",
+  {id:"d4",name:"Bakers Corner Challenge",dur:20,diff:4,km:7.8,centre:"dunlaoghaire",
    skills:["hillstart", "rightturns", "observation"],
    desc:"Bakers Corner → Kill Ave → IADT → Ashgrove → Ardmore Park → Rochestown Ave → return",
    tips:["Bakers Corner: DON'T go unless filter is green or gap is clear","Ardmore Park has mild hill — good for confidence on hill starts","Mini roundabouts: 2nd gear, yield to right, don't stop unnecessarily"],
    addressWaypoints:["Kill+Avenue,+Dun+Laoghaire,+Co+Dublin","Ashgrove,+Dun+Laoghaire,+Co+Dublin","Ardmore+Park,+Dun+Laoghaire,+Co+Dublin","Rochestown+Avenue,+Dun+Laoghaire,+Co+Dublin","Sallynoggin+Road,+Dun+Laoghaire,+Co+Dublin"]},
-  {id:"d5",name:"Granitefield & Pearse",dur:28,diff:3,centre:"dunlaoghaire",
+  {id:"d5",name:"Granitefield & Pearse",dur:28,diff:3,km:11.2,centre:"dunlaoghaire",
    skills:["reversecorner", "roundabouts", "observation"],
    desc:"Rochestown Ave → Granitefield → Woodlands Rd → reverse → Pearse area → return",
    tips:["Auburn Road reverse: watch for cars behind — busy area","Keep 1m from parked cars at all times","Granitefield is a common alternative to Watsons for reverse"],
    addressWaypoints:["Johnstown+Road,+Dun+Laoghaire,+Co+Dublin","Rochestown+Avenue,+Dun+Laoghaire,+Co+Dublin","Granitefield,+Dun+Laoghaire,+Co+Dublin","Pearse+Street,+Sallynoggin,+Co+Dublin"]},
-  {id:"d6",name:"Stradbrook Extended",dur:38,diff:4,centre:"dunlaoghaire",
+  {id:"d6",name:"Stradbrook Extended",dur:38,diff:4,km:15.2,centre:"dunlaoghaire",
    skills:["lanechange", "roundabouts", "observation"],
    desc:"Pottery Rd → Stradbrook roundabout → Deansgrange → Graduate roundabout → full loop",
    tips:["Most Dún Laoghaire tests hit at least 2 of these 3 roundabouts","Plan your lane 100m ahead of each roundabout","Don't stop at roundabouts unless you must — progress matters"],
    addressWaypoints:["Pottery+Road,+Dun+Laoghaire,+Co+Dublin","Stradbrook+Road,+Blackrock,+Co+Dublin","Deansgrange+Road,+Dun+Laoghaire,+Co+Dublin","Glenageary+Road,+Glenageary,+Co+Dublin","Sallynoggin+Road,+Dun+Laoghaire,+Co+Dublin"]},
-  {id:"d7",name:"Full Dún Laoghaire Simulation",dur:55,diff:5,centre:"dunlaoghaire",
+  {id:"d7",name:"Full Dún Laoghaire Simulation",dur:55,diff:5,km:23.6,centre:"dunlaoghaire",
    skills:["observation"],
    desc:"Bakers Corner, all 3 roundabouts, Watsons manoeuvres, Sallynoggin. Everything.",
    tips:["Only after other Dún Laoghaire routes are solid","Practice at your test time for traffic familiarity","This is the full package — handle it, handle the test"],
    addressWaypoints:["Kill+Avenue,+Dun+Laoghaire,+Co+Dublin","Monkstown+Farm,+Dun+Laoghaire,+Co+Dublin","Sallynoggin+Road,+Dun+Laoghaire,+Co+Dublin","Glenageary+Road,+Glenageary,+Co+Dublin","Rochestown+Avenue,+Dun+Laoghaire,+Co+Dublin"]},
-  {id:"m1",name:"Tyrrelstown Local",dur:10,diff:2,centre:"mulhuddart",
+  {id:"m1",name:"Tyrrelstown Local",dur:10,diff:2,km:4.6,centre:"mulhuddart",
    skills:["reversecorner", "turnabout", "junctions", "observation"],
    desc:"Carlton Hotel → Church Rd → Tyrrelstown estates → manoeuvres → return. Confidence builder.",
    tips:["STOP at the centre exit — visibility is poor, creep forward","2nd gear for speed ramps","Tyrrelstown estates are the gentle introduction — master these first"],
    addressWaypoints:["Church+Road,+Tyrrelstown,+Dublin+15","Tyrrelstown+Boulevard,+Tyrrelstown,+Dublin+15","Tyrrelstown+Way,+Tyrrelstown,+Dublin+15"]},
-  {id:"m2",name:"Huntstown Estate",dur:19,diff:3,centre:"mulhuddart",
+  {id:"m2",name:"Huntstown Estate",dur:19,diff:3,km:7.4,centre:"mulhuddart",
    skills:["observation"],
    desc:"Tyrrelstown → Huntstown → large speed ramps → narrow roads → manoeuvres → return",
    tips:["2nd gear, 20km/h for the big ramps — brake gently before, accelerate after","On narrow roads: if hazard is your side, you yield","Reverse on bend: extra mirror checks, go very slowly"],
    addressWaypoints:["Church+Road,+Tyrrelstown,+Dublin+15","Huntstown+Road,+Mulhuddart,+Dublin+15","Huntstown+Way,+Mulhuddart,+Dublin+15","Huntstown+Drive,+Mulhuddart,+Dublin+15"]},
-  {id:"m3",name:"N3 National Road",dur:16,diff:4,centre:"mulhuddart",
+  {id:"m3",name:"N3 National Road",dur:16,diff:4,km:8.0,centre:"mulhuddart",
    skills:["lanechange", "observation"],
    desc:"Church Rd → N3 merge → 100km/h → exit → Mulhuddart Village → return. #1 fail zone.",
    tips:["Build speed on the slip road — don't join at 60km/h","Merge at first safe gap — hesitation is worse than waiting","For N3 return right turn: check road markings, stay in RIGHT lane"],
    addressWaypoints:["Church+Road,+Tyrrelstown,+Dublin+15","N3+Navan+Road,+Mulhuddart,+Dublin+15","Mulhuddart+Village,+Mulhuddart,+Dublin+15","Old+Navan+Road,+Mulhuddart,+Dublin+15"]},
-  {id:"m4",name:"Blanchardstown Roundabout",dur:21,diff:4,centre:"mulhuddart",
+  {id:"m4",name:"Blanchardstown Roundabout",dur:21,diff:4,km:8.1,centre:"mulhuddart",
    skills:["lanechange", "roundabouts", "observation"],
    desc:"N3 → Blanchardstown Shopping Centre roundabout → Corduff → return",
    tips:["Know your exit BEFORE entering the roundabout","Follow road markings painted on the surface","Don't panic at volume — commit to your lane and proceed"],
    addressWaypoints:["Church+Road,+Tyrrelstown,+Dublin+15","N3+Navan+Road,+Mulhuddart,+Dublin+15","Blanchardstown+Shopping+Centre,+Dublin+15","Corduff+Road,+Blanchardstown,+Dublin+15"]},
-  {id:"m5",name:"Mulhuddart Village & Industrial",dur:21,diff:3,centre:"mulhuddart",
+  {id:"m5",name:"Mulhuddart Village & Industrial",dur:21,diff:3,km:13.3,centre:"mulhuddart",
    skills:["lanechange", "observation"],
    desc:"Tyrrelstown → Mulhuddart Village → industrial estate → bus lane areas → return",
    tips:["Watch for bus lane markings — don't drive in active bus lanes","When lanes merge: check mirrors, signal, merge smoothly","Industrial roads can be wide but stay in lane"],
    addressWaypoints:["Church+Road,+Tyrrelstown,+Dublin+15","Mulhuddart+Village,+Mulhuddart,+Dublin+15","Old+Navan+Road,+Mulhuddart,+Dublin+15","Damastown+Road,+Mulhuddart,+Dublin+15"]},
-  {id:"m6",name:"Hartstown Extension",dur:29,diff:3,centre:"mulhuddart",
+  {id:"m6",name:"Hartstown Extension",dur:29,diff:3,km:12.5,centre:"mulhuddart",
    skills:["roundabouts", "observation"],
    desc:"Tyrrelstown → Hartstown → Clonsilla area → residential manoeuvres → return",
    tips:["Hartstown is quieter than Huntstown — good for building skills","School zones: be extra alert 8:30-9:30am and 2:30-3:30pm","Mini roundabouts: 2nd gear, yield right"],
    addressWaypoints:["Church+Road,+Tyrrelstown,+Dublin+15","Hartstown+Road,+Hartstown,+Dublin+15","Clonsilla+Road,+Clonsilla,+Dublin+15","Hartstown+Avenue,+Hartstown,+Dublin+15"]},
-  {id:"m7",name:"Full Mulhuddart Simulation",dur:39,diff:5,centre:"mulhuddart",
+  {id:"m7",name:"Full Mulhuddart Simulation",dur:39,diff:5,km:17.8,centre:"mulhuddart",
    skills:["observation"],
    desc:"N3 at 100km/h, Blanchardstown roundabout, Huntstown manoeuvres, village. Everything.",
    tips:["Only attempt after other Mulhuddart routes are solid","The N3 + Blanchardstown roundabout combo is the test's spine","If you nail this, test day is familiar territory"],
@@ -363,7 +364,8 @@ const ROUTES=[
 ];
 
 const DUR_FILTERS=[{id:"any",l:"Any time"},{id:"quick",l:"≤20 min"},{id:"short",l:"20–35 min"},{id:"med",l:"35–50 min"},{id:"long",l:"50+ min"}];
-const SORT_OPTS=[{id:"recommended",l:"Recommended"},{id:"shortest",l:"Shortest"},{id:"longest",l:"Longest"},{id:"hardest",l:"Hardest"}];
+const SORT_OPTS=[{id:"recommended",l:"Recommended"},{id:"shortest",l:"Shortest"},{id:"longest",l:"Longest"},{id:"easiest",l:"Easiest"},{id:"hardest",l:"Hardest"}];
+const DIFF_FILTERS=[{id:0,l:"Any"},{id:1,l:"●○○○○"},{id:2,l:"●●○○○"},{id:3,l:"●●●○○"},{id:4,l:"●●●●○"},{id:5,l:"●●●●●"}];
 
 /* ─── LOGIC ─── */
 const AVG=30,EDT=12;
@@ -388,7 +390,7 @@ function Stepper({count,onInc,onDec,$}){const[pop,sP]=useState(false);const inc=
 
 /* ─── ALPHA BANNER ─── */
 function AlphaBanner({$,onDismiss}){return<div style={{padding:"10px 20px",display:"flex",alignItems:"center",justifyContent:"space-between",background:$.alBg,borderBottom:`1px solid ${$.alBd}`,animation:"slideDown 0.3s ease"}}><div style={{display:"flex",alignItems:"center",gap:8}}><span style={{fontSize:10,fontWeight:700,color:$.alTx,letterSpacing:"0.08em",textTransform:"uppercase",padding:"2px 8px",borderRadius:6,border:`1px solid ${$.alBd}`,background:$.bg}}>Alpha</span><span style={{fontSize:12,color:$.txS}}>Help us improve — </span><a href={FEEDBACK_URL} target="_blank" rel="noopener" style={{fontSize:12,fontWeight:600,color:$.alTx}}>give feedback</a></div><button onClick={onDismiss} style={{background:"none",border:"none",cursor:"pointer",color:$.txM,fontSize:16,lineHeight:1,padding:"4px"}}>×</button></div>}
-function FeedbackFab({$}){return<a href={FEEDBACK_URL} target="_blank" rel="noopener" className="press" style={{position:"fixed",right:16,bottom:76,zIndex:25,width:44,height:44,borderRadius:22,background:$.btn,boxShadow:$.btnSh,display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer"}}><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M1 17L2.5 12L12.5 2C13.3 1.2 14.7 1.2 15.5 2L16 2.5C16.8 3.3 16.8 4.7 16 5.5L6 15.5L1 17Z" stroke="#fff" strokeWidth="1.4" strokeLinejoin="round"/><path d="M11 3.5L14.5 7" stroke="#fff" strokeWidth="1.4"/></svg></a>}
+function FeedbackFab({$}){return<a href={FEEDBACK_URL} target="_blank" rel="noopener" className="press" style={{position:"fixed",right:16,bottom:76,zIndex:25,width:44,height:44,borderRadius:22,background:$.btn,boxShadow:$.btnSh,display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer"}}><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 2.5h12A1.5 1.5 0 0116.5 4v7A1.5 1.5 0 0115 12.5H5.5L2 16V4A1.5 1.5 0 013 2.5z" stroke="#fff" strokeWidth="1.4" strokeLinejoin="round"/><path d="M6 7h6M6 9.5h3.5" stroke="#fff" strokeWidth="1.3" strokeLinecap="round"/></svg></a>}
 function FeedbackMilestone({$,onDismiss}){return<div style={{position:"fixed",inset:0,zIndex:50,display:"flex",alignItems:"center",justifyContent:"center",background:"rgba(0,0,0,0.5)",backdropFilter:"blur(4px)",WebkitBackdropFilter:"blur(4px)",animation:"fadeIn 0.3s ease"}} onClick={onDismiss}><div onClick={e=>e.stopPropagation()} style={{width:"calc(100% - 48px)",maxWidth:360,padding:"32px 24px",borderRadius:20,background:$.bg,border:`1px solid ${$.bd}`,boxShadow:"0 24px 64px rgba(0,0,0,0.2)",textAlign:"center",animation:"fadeUp 0.35s ease both"}}><div style={{fontSize:36,marginBottom:12}}>🎉</div><h3 style={{fontSize:18,fontWeight:700,color:$.txH,marginBottom:8}}>Week 1 complete!</h3><p style={{fontSize:14,color:$.txS,lineHeight:1.5,marginBottom:20}}>You're one of our first testers — your feedback shapes what Test Day becomes. Got 2 minutes?</p><a href={FEEDBACK_URL} target="_blank" rel="noopener" className="press" style={{display:"block",padding:"14px 20px",borderRadius:12,background:$.btn,color:"#fff",fontSize:14,fontWeight:600,textDecoration:"none",boxShadow:$.btnSh,marginBottom:10}}>Share feedback</a><button onClick={onDismiss} className="press" style={{background:"none",border:"none",cursor:"pointer",fontSize:13,color:$.txM,padding:"8px 16px"}}>Maybe later</button></div></div>}
 
 /* ─── WELCOME — horizontal logo + name ─── */
@@ -448,7 +450,7 @@ function PlanTab({plan,pr,focus,onEdit,onReset,logs,onLog,centre,$}){const[expOv
   <div className="cascade" style={{display:"flex",flexDirection:"column",gap:8}}>{plan.weeks.map(wk=>{const open=exp===wk.n;const fc=wk.sess.filter(s=>s.hasFocus).length;const wkL=wk.sess.reduce((a,_,si)=>a+(logs[`${wk.n}-${si}`]||0),0);const done=weekDone(wk);return<div key={wk.n} ref={el=>weekRefs.current[wk.n]=el} style={{borderRadius:16,overflow:"hidden",border:`1px solid ${open?$.bdA:$.bd}`,background:open?$.sfS:$.sf,transition:"all 0.35s",scrollMarginTop:12}}><button className="press" onClick={()=>sExp(open?null:wk.n)} style={{width:"100%",padding:"16px 18px",background:"none",border:"none",cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"space-between"}}><div style={{display:"flex",alignItems:"center",gap:12}}><div style={{width:30,height:30,borderRadius:9,background:done?$.ck:wkL>0?$.gs:$.sf,border:`1px solid ${done?"transparent":wkL>0?$.gb:$.bd}`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:12,fontWeight:700,color:done?"#fff":wkL>0?$.g:$.txM,transition:"all 0.3s"}}>{done?<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7L6 10L11 4" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>:wk.n}</div><div style={{textAlign:"left"}}><div style={{display:"flex",alignItems:"center",gap:6}}><span style={{fontSize:15,fontWeight:600,color:done?$.g:$.tx}}>{done?"Week "+wk.n+" ✓":"Week "+wk.n}</span>{wk.n===currentWeek&&!done&&<span style={{fontSize:9,fontWeight:700,color:$.g,background:$.gs,border:`1px solid ${$.gb}`,padding:"1px 6px",borderRadius:6,letterSpacing:"0.05em"}}>CURRENT</span>}</div><div style={{fontSize:12,color:$.txM,marginTop:2}}>{wk.sess.length} session{wk.sess.length>1?"s":""}{fc>0&&<span style={{color:$.g}}> · {fc} focus</span>}{wkL>0&&!done&&<span style={{color:$.g}}> · {wkL} logged</span>}{done&&<span style={{color:$.g}}> · Complete</span>}</div></div></div><svg width="14" height="14" viewBox="0 0 14 14" fill="none" style={{transform:open?"rotate(180deg)":"rotate(0)",transition:"transform 0.35s"}}><path d="M3 5L7 9L11 5" stroke={$.txM} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></button>
   {open&&<div style={{padding:"0 14px 14px",animation:"fadeDown 0.3s ease"}}><div style={{display:"flex",flexDirection:"column",gap:8}}>{wk.sess.map((sess,si)=>{const lk=`${wk.n}-${si}`,lc=logs[lk]||0;return<div key={si} style={{padding:"16px",borderRadius:12,background:lc>0?$.rD:sess.hasFocus?`${$.g}06`:$.sf,border:`1px solid ${lc>0?$.rDb:sess.hasFocus?$.gb:$.bdS}`}}><div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:12}}><div style={{display:"flex",alignItems:"center",gap:8}}><span style={{fontSize:14,fontWeight:600,color:$.tx}}>{sess.dl}</span>{sess.hasFocus&&<span style={{padding:"2px 8px",borderRadius:6,fontSize:10,fontWeight:700,background:$.gs,border:`1px solid ${$.gb}`,color:$.g}}>Focus</span>}<span style={{fontSize:12,color:$.txM}}>{sess.time} min</span></div><Stepper count={lc} onInc={()=>onLog(lk,1)} onDec={()=>onLog(lk,-1)} $={$}/></div>{sess.routes.map((rt,ri)=>{const rOpen=expRoute===`${wk.n}-${si}-${ri}`;const fullRoute=ROUTES.find(x=>x.id===rt.id);return<div key={ri} style={{borderTop:ri>0?`1px solid ${$.dv}`:"none",marginTop:ri>0?8:0}}>
 <div onClick={()=>sExpRoute(rOpen?null:`${wk.n}-${si}-${ri}`)} style={{display:"flex",alignItems:"center",gap:10,padding:ri>0?"8px 0 0":"0",cursor:"pointer"}}>
-<div style={{width:6,height:6,borderRadius:3,flexShrink:0,background:rt.fm>0?$.g:$.txF}}/><div style={{flex:1}}><div style={{display:"flex",alignItems:"center",gap:6}}><span style={{fontSize:13,fontWeight:500,color:$.tx}}>{rt.name}</span><svg width="10" height="10" viewBox="0 0 10 10" fill="none" style={{flexShrink:0,transform:rOpen?"rotate(180deg)":"rotate(0)",transition:"transform 0.3s"}}><path d="M2 3.5L5 6.5L8 3.5" stroke={$.txM} strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/></svg></div><div style={{display:"flex",gap:6,marginTop:3}}><span style={{fontSize:11,color:$.txM}}>{rt.dur} min</span><span style={{color:$.txF}}>·</span><span style={{fontSize:11,color:$.txM,letterSpacing:1}}>{"●".repeat(rt.diff)}{"○".repeat(5-rt.diff)}</span></div>
+<div style={{width:6,height:6,borderRadius:3,flexShrink:0,background:rt.fm>0?$.g:$.txF}}/><div style={{flex:1}}><div style={{display:"flex",alignItems:"center",gap:6}}><span style={{fontSize:13,fontWeight:500,color:$.tx}}>{rt.name}</span><svg width="10" height="10" viewBox="0 0 10 10" fill="none" style={{flexShrink:0,transform:rOpen?"rotate(180deg)":"rotate(0)",transition:"transform 0.3s"}}><path d="M2 3.5L5 6.5L8 3.5" stroke={$.txM} strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/></svg></div><div style={{display:"flex",gap:6,marginTop:3}}><span style={{fontSize:11,color:$.txM}}>{rt.dur} min</span><span style={{color:$.txF}}>·</span><span style={{fontSize:11,color:$.txM}}>{rt.km} km</span><span style={{color:$.txF}}>·</span><span style={{fontSize:11,color:$.txM,letterSpacing:1}}>{"●".repeat(rt.diff)}{"○".repeat(5-rt.diff)}</span></div>
 {rt.fm>0&&<div style={{display:"flex",gap:4,marginTop:4,flexWrap:"wrap"}}>{rt.skills.filter(s=>focus.includes(s)).map(sid=>{const sk=SKILLS.find(s=>s.id===sid);return<span key={sid} style={{padding:"1px 6px",borderRadius:6,fontSize:9,fontWeight:600,background:$.fpBg,border:`1px solid ${$.fpBd}`,color:$.fpTx}}>{sk?.l}</span>})}</div>}
 </div></div>
 {rOpen&&fullRoute&&<div style={{padding:"12px 0 4px 16px",animation:"fadeDown 0.3s ease"}}>
@@ -461,32 +463,36 @@ function PlanTab({plan,pr,focus,onEdit,onReset,logs,onLog,centre,$}){const[expOv
 
 /* ─── ROUTE BROWSER — with expandable detail ─── */
 function RouteBrowser({focus,routePx,onRoutePx,centre,$}){
-  const[durF,sDurF]=useState("any");const[skillF,sSkillF]=useState(null);const[sort,sSort]=useState("recommended");
-  const[expanded,sExpanded]=useState(null);
-  const cd=CENTRES.find(c=>c.id===centre);
-  const filtered=useMemo(()=>{const shared=["raheny","killester"];const match=shared.includes(centre)?shared:[centre];let r=ROUTES.filter(x=>match.includes(x.centre));if(durF==="quick")r=r.filter(x=>x.dur<=20);else if(durF==="short")r=r.filter(x=>x.dur>20&&x.dur<=35);else if(durF==="med")r=r.filter(x=>x.dur>35&&x.dur<=50);else if(durF==="long")r=r.filter(x=>x.dur>50);if(skillF)r=r.filter(x=>x.skills.includes(skillF));if(sort==="shortest")r.sort((a,b)=>a.dur-b.dur);else if(sort==="longest")r.sort((a,b)=>b.dur-a.dur);else if(sort==="hardest")r.sort((a,b)=>b.diff-a.diff);else r.sort((a,b)=>{const pa=routePx[a.id]||0,pb=routePx[b.id]||0,fa=a.skills.filter(s=>focus.includes(s)).length,fb=b.skills.filter(s=>focus.includes(s)).length;if(pa===0&&pb>0)return-1;if(pb===0&&pa>0)return 1;if(fa!==fb)return fb-fa;return b.diff-a.diff});return r},[centre,durF,skillF,sort,routePx,focus]);
+  const[centreF,sCentreF]=useState(centre);const[durF,sDurF]=useState("any");const[diffF,sDiffF]=useState(0);const[skillF,sSkillF]=useState(null);const[sort,sSort]=useState("recommended");
+  const[expanded,sExpanded]=useState(null);const[showFilters,sShowFilters]=useState(false);
+  const activeFilters=(centreF!==centre?1:0)+(durF!=="any"?1:0)+(diffF!==0?1:0)+(skillF?1:0);
+  const filtered=useMemo(()=>{const shared=["raheny","killester"];const match=shared.includes(centreF)?shared:[centreF];let r=ROUTES.filter(x=>match.includes(x.centre));if(durF==="quick")r=r.filter(x=>x.dur<=20);else if(durF==="short")r=r.filter(x=>x.dur>20&&x.dur<=35);else if(durF==="med")r=r.filter(x=>x.dur>35&&x.dur<=50);else if(durF==="long")r=r.filter(x=>x.dur>50);if(diffF>0)r=r.filter(x=>x.diff===diffF);if(skillF)r=r.filter(x=>x.skills.includes(skillF));if(sort==="shortest")r.sort((a,b)=>a.dur-b.dur);else if(sort==="longest")r.sort((a,b)=>b.dur-a.dur);else if(sort==="easiest")r.sort((a,b)=>a.diff-b.diff||a.dur-b.dur);else if(sort==="hardest")r.sort((a,b)=>b.diff-a.diff||b.dur-a.dur);else r.sort((a,b)=>{const pa=routePx[a.id]||0,pb=routePx[b.id]||0,fa=a.skills.filter(s=>focus.includes(s)).length,fb=b.skills.filter(s=>focus.includes(s)).length;if(pa===0&&pb>0)return-1;if(pb===0&&pa>0)return 1;if(fa!==fb)return fb-fa;return b.diff-a.diff});return r},[centreF,durF,diffF,skillF,sort,routePx,focus]);
   const started=filtered.filter(r=>(routePx[r.id]||0)>0).length,totalPx=Object.values(routePx).reduce((a,v)=>a+v,0);
-  const totalForCentre=useMemo(()=>{const shared=["raheny","killester"];const match=shared.includes(centre)?shared:[centre];return ROUTES.filter(x=>match.includes(x.centre)).length},[centre]);
+  const clearAll=()=>{sCentreF(centre);sDurF("any");sDiffF(0);sSkillF(null)};
+  const cn=CENTRES.find(c=>c.id===centreF);
 
-  return<div style={{animation:"fadeUp 0.4s ease both"}}><div style={{marginBottom:16,paddingTop:12}}><div style={{display:"flex",alignItems:"baseline",justifyContent:"space-between"}}><h2 style={{fontSize:26,fontWeight:700,color:$.txH,margin:0,letterSpacing:"-0.025em"}}>Routes</h2><span style={{fontSize:12,color:$.txM,fontWeight:500}}>{cd?.name} · {totalForCentre} routes</span></div><div style={{display:"flex",gap:12,marginTop:8}}><span style={{fontSize:13,color:$.txS}}>{started} started</span><span style={{color:$.txF}}>·</span><span style={{fontSize:13,color:$.txS}}>{totalPx} total practices</span></div></div>
-  <div style={{display:"flex",gap:6,marginBottom:12,overflowX:"auto",paddingBottom:2}}>{DUR_FILTERS.map(f=><button key={f.id} className="press" onClick={()=>sDurF(f.id)} style={{padding:"7px 13px",borderRadius:16,fontSize:12,fontWeight:500,whiteSpace:"nowrap",background:durF===f.id?$.sfS:"transparent",border:`1px solid ${durF===f.id?$.bdA:$.bd}`,color:durF===f.id?$.g:$.txS,cursor:"pointer",flexShrink:0}}>{f.l}</button>)}</div>
-  <div style={{display:"flex",gap:6,marginBottom:12,overflowX:"auto",paddingBottom:2,flexWrap:"wrap"}}>{(focus.length>0?SKILLS.filter(s=>focus.includes(s.id)):SKILLS).map(s=>{const on=skillF===s.id;return<button key={s.id} className="press" onClick={()=>sSkillF(on?null:s.id)} style={{padding:"6px 12px",borderRadius:16,fontSize:11,fontWeight:600,whiteSpace:"nowrap",background:on?$.chA:"transparent",border:`1px solid ${on?$.chAb:$.bd}`,color:on?$.g:$.txM,cursor:"pointer",flexShrink:0,display:"flex",alignItems:"center",gap:4}}><span>{s.i}</span>{s.l}</button>})}</div>
-  <div style={{display:"flex",gap:6,marginBottom:18}}>{SORT_OPTS.map(o=><button key={o.id} className="press" onClick={()=>sSort(o.id)} style={{padding:"6px 11px",borderRadius:12,fontSize:11,fontWeight:500,background:sort===o.id?$.sfS:"transparent",border:`1px solid ${sort===o.id?$.bdA:$.bdS}`,color:sort===o.id?$.g:$.txM,cursor:"pointer"}}>{o.l}</button>)}</div>
-  {filtered.length===0&&<div style={{textAlign:"center",padding:"40px 20px"}}><p style={{fontSize:14,color:$.txM}}>No routes match these filters.</p><button className="press" onClick={()=>{sDurF("any");sSkillF(null)}} style={{marginTop:12,background:"none",border:"none",cursor:"pointer",fontSize:13,color:$.g,fontWeight:500}}>Clear filters</button></div>}
+  return<div style={{animation:"fadeUp 0.4s ease both"}}><div style={{marginBottom:16,paddingTop:12}}><div style={{display:"flex",alignItems:"baseline",justifyContent:"space-between"}}><h2 style={{fontSize:26,fontWeight:700,color:$.txH,margin:0,letterSpacing:"-0.025em"}}>Routes</h2><span style={{fontSize:12,color:$.txM,fontWeight:500}}>{filtered.length} of {ROUTES.length}</span></div><div style={{display:"flex",gap:12,marginTop:8}}><span style={{fontSize:13,color:$.txS}}>{started} started</span><span style={{color:$.txF}}>·</span><span style={{fontSize:13,color:$.txS}}>{totalPx} total practices</span></div></div>
+  <button className="press" onClick={()=>sShowFilters(!showFilters)} style={{display:"flex",alignItems:"center",gap:8,width:"100%",padding:"12px 16px",borderRadius:12,border:`1px solid ${showFilters||activeFilters?$.bdA:$.bd}`,background:showFilters?$.sfS:$.sf,cursor:"pointer",marginBottom:12}}><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 4h12M4 8h8M6 12h4" stroke={activeFilters?$.g:$.txM} strokeWidth="1.4" strokeLinecap="round"/></svg><span style={{fontSize:13,fontWeight:600,color:activeFilters?$.g:$.txS}}>Filters{activeFilters>0?` (${activeFilters})`:""}</span>{activeFilters>0&&<span onClick={e=>{e.stopPropagation();clearAll()}} style={{marginLeft:"auto",fontSize:11,fontWeight:600,color:$.g,padding:"2px 8px",borderRadius:8,background:$.gs}}>Clear</span>}<svg width="12" height="12" viewBox="0 0 12 12" fill="none" style={{marginLeft:activeFilters?"0":"auto",transform:showFilters?"rotate(180deg)":"rotate(0)",transition:"transform 0.3s"}}><path d="M2.5 4.5L6 8L9.5 4.5" stroke={$.txM} strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/></svg></button>
+  {showFilters&&<div style={{marginBottom:16,animation:"fadeDown 0.25s ease",display:"flex",flexDirection:"column",gap:12}}>
+    <div><div style={{fontSize:10,fontWeight:700,color:$.txM,textTransform:"uppercase",letterSpacing:"0.08em",marginBottom:6}}>Test Centre</div><div style={{display:"flex",gap:6,overflowX:"auto",paddingBottom:2}}>{CENTRES.map(c=>{const on=centreF===c.id;return<button key={c.id} className="press" onClick={()=>sCentreF(c.id)} style={{padding:"7px 13px",borderRadius:16,fontSize:12,fontWeight:on?600:500,whiteSpace:"nowrap",background:on?$.sfS:"transparent",border:`1px solid ${on?$.bdA:$.bd}`,color:on?$.g:$.txS,cursor:"pointer",flexShrink:0}}>{c.name}</button>})}</div></div>
+    <div><div style={{fontSize:10,fontWeight:700,color:$.txM,textTransform:"uppercase",letterSpacing:"0.08em",marginBottom:6}}>Duration</div><div style={{display:"flex",gap:6,overflowX:"auto",paddingBottom:2}}>{DUR_FILTERS.map(f=><button key={f.id} className="press" onClick={()=>sDurF(f.id)} style={{padding:"7px 13px",borderRadius:16,fontSize:12,fontWeight:durF===f.id?600:500,whiteSpace:"nowrap",background:durF===f.id?$.sfS:"transparent",border:`1px solid ${durF===f.id?$.bdA:$.bd}`,color:durF===f.id?$.g:$.txS,cursor:"pointer",flexShrink:0}}>{f.l}</button>)}</div></div>
+    <div><div style={{fontSize:10,fontWeight:700,color:$.txM,textTransform:"uppercase",letterSpacing:"0.08em",marginBottom:6}}>Difficulty</div><div style={{display:"flex",gap:6,overflowX:"auto",paddingBottom:2}}>{DIFF_FILTERS.map(f=>{const on=diffF===f.id;return<button key={f.id} className="press" onClick={()=>sDiffF(on&&f.id>0?0:f.id)} style={{padding:"7px 13px",borderRadius:16,fontSize:f.id===0?12:11,fontWeight:on?600:500,whiteSpace:"nowrap",background:on?$.sfS:"transparent",border:`1px solid ${on?$.bdA:$.bd}`,color:on?$.g:$.txS,cursor:"pointer",flexShrink:0,letterSpacing:f.id>0?1:0}}>{f.l}</button>})}</div></div>
+    <div><div style={{fontSize:10,fontWeight:700,color:$.txM,textTransform:"uppercase",letterSpacing:"0.08em",marginBottom:6}}>Manoeuvres</div><div style={{display:"flex",gap:6,overflowX:"auto",paddingBottom:2,flexWrap:"wrap"}}>{SKILLS.map(s=>{const on=skillF===s.id;return<button key={s.id} className="press" onClick={()=>sSkillF(on?null:s.id)} style={{padding:"6px 12px",borderRadius:16,fontSize:11,fontWeight:on?600:500,whiteSpace:"nowrap",background:on?$.chA:"transparent",border:`1px solid ${on?$.chAb:$.bd}`,color:on?$.g:$.txM,cursor:"pointer",flexShrink:0,display:"flex",alignItems:"center",gap:4}}><span>{s.i}</span>{s.l}</button>})}</div></div>
+  </div>}
+  <div style={{display:"flex",gap:6,marginBottom:14}}>{SORT_OPTS.map(o=><button key={o.id} className="press" onClick={()=>sSort(o.id)} style={{padding:"6px 11px",borderRadius:12,fontSize:11,fontWeight:500,background:sort===o.id?$.sfS:"transparent",border:`1px solid ${sort===o.id?$.bdA:$.bdS}`,color:sort===o.id?$.g:$.txM,cursor:"pointer"}}>{o.l}</button>)}</div>
+  {filtered.length===0&&<div style={{textAlign:"center",padding:"40px 20px"}}><p style={{fontSize:14,color:$.txM}}>No routes match these filters.</p><button className="press" onClick={clearAll} style={{marginTop:12,background:"none",border:"none",cursor:"pointer",fontSize:13,color:$.g,fontWeight:500}}>Clear filters</button></div>}
 
   <div className="cascade" style={{display:"flex",flexDirection:"column",gap:8}}>{filtered.map(r=>{const px=routePx[r.id]||0;const hf=r.skills.some(s=>focus.includes(s));const isOpen=expanded===r.id;
     return<div key={r.id} style={{borderRadius:16,background:px>0?$.rD:$.sf,border:`1px solid ${isOpen?$.bdA:px>0?$.rDb:$.bd}`,transition:"background 0.3s, border-color 0.3s",overflow:"hidden"}}>
-      {/* Header — always visible */}
       <div onClick={()=>sExpanded(isOpen?null:r.id)} style={{padding:"16px",cursor:"pointer",display:"flex",alignItems:"flex-start",justifyContent:"space-between"}}>
         <div style={{flex:1,minWidth:0}}>
           <div style={{display:"flex",alignItems:"center",gap:8}}><span style={{fontSize:15,fontWeight:600,color:$.tx}}>{r.name}</span><svg width="12" height="12" viewBox="0 0 12 12" fill="none" style={{flexShrink:0,transform:isOpen?"rotate(180deg)":"rotate(0)",transition:"transform 0.3s"}}><path d="M2.5 4.5L6 8L9.5 4.5" stroke={$.txM} strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/></svg></div>
-          <div style={{display:"flex",gap:8,marginTop:4,alignItems:"center"}}><span style={{fontSize:13,fontWeight:600,color:$.txB}}>{r.dur} min</span><span style={{color:$.txF}}>·</span><span style={{fontSize:12,color:$.txM,letterSpacing:1}}>{"●".repeat(r.diff)}{"○".repeat(5-r.diff)}</span>{hf&&<><span style={{color:$.txF}}>·</span><span style={{fontSize:11,fontWeight:600,color:$.g}}>Focus</span></>}</div>
+          <div style={{display:"flex",gap:8,marginTop:4,alignItems:"center",flexWrap:"wrap"}}><span style={{fontSize:13,fontWeight:600,color:$.txB}}>{r.dur} min</span><span style={{color:$.txF}}>·</span><span style={{fontSize:12,color:$.txM}}>{r.km} km</span><span style={{color:$.txF}}>·</span><span style={{fontSize:12,color:$.txM,letterSpacing:1}}>{"●".repeat(r.diff)}{"○".repeat(5-r.diff)}</span>{hf&&<><span style={{color:$.txF}}>·</span><span style={{fontSize:11,fontWeight:600,color:$.g}}>Focus</span></>}</div>
           <div style={{display:"flex",gap:5,flexWrap:"wrap",marginTop:8}}>{r.skills.map(sid=>{const iF=focus.includes(sid);const sk=SKILLS.find(s=>s.id===sid);return<span key={sid} style={{padding:"3px 9px",borderRadius:8,fontSize:11,fontWeight:500,background:iF?$.fpBg:$.bar,border:`1px solid ${iF?$.fpBd:$.bdS}`,color:iF?$.fpTx:$.txM}}>{sk?.l}</span>})}</div>
         </div>
         <div onClick={e=>e.stopPropagation()}><Stepper count={px} onInc={()=>onRoutePx(r.id,1)} onDec={()=>onRoutePx(r.id,-1)} $={$}/></div>
       </div>
 
-      {/* Detail panel — expanded */}
       {isOpen&&<div style={{padding:"0 16px 16px",animation:"fadeDown 0.35s ease"}}>
         <div style={{height:1,background:$.dv,marginBottom:16}}/>
         <p style={{fontSize:13,color:$.txB,lineHeight:1.65,marginBottom:16}}>{r.desc}</p>
@@ -510,7 +516,19 @@ function TabBar({tab,onTab,$}){return<div style={{position:"fixed",bottom:0,left
 function App(){
   const[dk,toggleDark]=useDark();const $=useTheme(dk);
   useEffect(()=>{document.documentElement.style.backgroundColor=$.bg;document.body.style.backgroundColor=$.bg},[$.bg]);
-  const[step,sStep]=useState(-1);const[dir,sDir]=useState(1);const[centre,sCentre]=useState(null);const[tf,sTf]=useState(null);const[exDate,sExDate]=useState("");const[hours,sHours]=useState(12);const[focus,sFocus]=useState([]);const[days,sDays]=useState([0,2,4,5]);const[dur,sDur]=useState(60);const[preset,sPreset]=useState("steady");const[fading,sFading]=useState(false);const[ret,sRet]=useState(false);const[plan,sPlan]=useState(null);const[loading,sLoading]=useState(false);const[logs,sLogs]=useState({});const[routePx,sRoutePx]=useState({});const[tab,sTab]=useState("plan");const[showBanner,sShowBanner]=useState(true);const[milestone,sMilestone]=useState(null);const milestoneShown=useRef({});
+  const saved=useRef(ls("app")).current;
+  const[step,sStep]=useState(saved?7:-1);const[dir,sDir]=useState(1);const[centre,sCentre]=useState(()=>ls("centre"));const[tf,sTf]=useState(()=>ls("tf"));const[exDate,sExDate]=useState(()=>ls("exDate")||"");const[hours,sHours]=useState(()=>ls("hours")||12);const[focus,sFocus]=useState(()=>ls("focus")||[]);const[days,sDays]=useState(()=>ls("days")||[0,2,4,5]);const[dur,sDur]=useState(()=>ls("dur")||60);const[preset,sPreset]=useState(()=>ls("preset")||"steady");const[fading,sFading]=useState(false);const[ret,sRet]=useState(false);const[plan,sPlan]=useState(()=>ls("plan"));const[loading,sLoading]=useState(false);const[logs,sLogs]=useState(()=>ls("logs")||{});const[routePx,sRoutePx]=useState(()=>ls("routePx")||{});const[tab,sTab]=useState("plan");const[showBanner,sShowBanner]=useState(()=>!ls("bannerOff"));const[milestone,sMilestone]=useState(null);const milestoneShown=useRef(ls("milesDone")||{});
+  useEffect(()=>{if(centre)ls("centre",centre)},[centre]);
+  useEffect(()=>{if(tf)ls("tf",tf)},[tf]);
+  useEffect(()=>{if(exDate)ls("exDate",exDate)},[exDate]);
+  useEffect(()=>{ls("hours",hours)},[hours]);
+  useEffect(()=>{ls("focus",focus)},[focus]);
+  useEffect(()=>{ls("days",days)},[days]);
+  useEffect(()=>{ls("dur",dur)},[dur]);
+  useEffect(()=>{ls("preset",preset)},[preset]);
+  useEffect(()=>{if(plan){ls("plan",plan);ls("app",true)}else{ls("app",null)}},[plan]);
+  useEffect(()=>{ls("logs",logs)},[logs]);
+  useEffect(()=>{ls("routePx",routePx)},[routePx]);
   const noDate=tf==="nodate",total=noDate?4:5;
   const go=useCallback((s,d=1)=>{if(fading)return;sDir(d);sFading(true);setTimeout(()=>{sStep(s);sFading(false)},130)},[fading]);
   const next=useCallback(()=>{if(ret){sRet(false);go(5,1);return}if(noDate&&step===3)go(5,1);else go(step+1,1)},[ret,noDate,step,go]);
@@ -526,15 +544,15 @@ function App(){
   const onLoaded=()=>{sPlan(genPlan({routes:centreRoutes,days,dur,focus,tf,hours}));sLoading(false);sLogs({});go(7,1);sTab("plan")};
   const editFromPlan=()=>{sPlan(null);go(5,-1)};
   const logSession=(key,delta)=>{sLogs(prev=>{const cur=prev[key]||0;const nv=Math.max(0,cur+delta);const n={...prev};if(nv===0)delete n[key];else n[key]=nv;return n})};
-  useEffect(()=>{if(!plan)return;plan.weeks.forEach(wk=>{const done=wk.sess.every((_,si)=>(logs[`${wk.n}-${si}`]||0)>=1);if(done&&!milestoneShown.current[wk.n]){milestoneShown.current[wk.n]=true;if(wk.n===1)sMilestone("week1")}})},[logs,plan]);
+  useEffect(()=>{if(!plan)return;plan.weeks.forEach(wk=>{const done=wk.sess.every((_,si)=>(logs[`${wk.n}-${si}`]||0)>=1);if(done&&!milestoneShown.current[wk.n]){milestoneShown.current[wk.n]=true;ls("milesDone",milestoneShown.current);if(wk.n===1)sMilestone("week1")}})},[logs,plan]);
   const logRoute=(id,delta)=>{sRoutePx(prev=>{const cur=prev[id]||0;const nv=Math.max(0,cur+delta);const n={...prev};if(nv===0)delete n[id];else n[id]=nv;return n})};
-  const reset=()=>{sStep(-1);sDir(1);sCentre(null);sTf(null);sExDate("");sHours(12);sFocus([]);sDays([0,2,4,5]);sDur(60);sPreset("steady");sRet(false);sPlan(null);sLoading(false);sLogs({});sRoutePx({});sTab("plan")};
+  const reset=()=>{sStep(-1);sDir(1);sCentre(null);sTf(null);sExDate("");sHours(12);sFocus([]);sDays([0,2,4,5]);sDur(60);sPreset("steady");sRet(false);sPlan(null);sLoading(false);sLogs({});sRoutePx({});sTab("plan");milestoneShown.current={};["app","centre","tf","exDate","hours","focus","days","dur","preset","plan","logs","routePx","milesDone"].forEach(k=>ls(k,null))};
   const showProg=step>=0&&step<5;const dStep=step>=0&&step<5?step+1:null;const showBtn=step>=1&&step<=4;const btnL=ret?"Back to summary":"Continue";const canGo=step===1?(tf!==null):step===4?days.length>0:true;const showTabs=step===7&&plan;
 
   return<div data-theme-wrap="" style={{width:"100%",maxWidth:440,margin:"0 auto",minHeight:"100vh",minHeight:"100dvh",background:$.bg,fontFamily:"'DM Sans',sans-serif",display:"flex",flexDirection:"column",position:"relative"}}>
     <div style={{position:"fixed",top:0,left:0,right:0,bottom:0,background:$.bgG,pointerEvents:"none",zIndex:0}}/>
-    {showBanner&&step>=0&&<div style={{position:"relative",zIndex:3}}><AlphaBanner $={$} onDismiss={()=>sShowBanner(false)}/></div>}
-    {step>=0&&<div style={{position:"relative",zIndex:2,padding:"20px 24px 0",display:"flex",alignItems:"center",justifyContent:"space-between"}}><div style={{display:"flex",alignItems:"center",gap:12}}>{step>0&&step<5&&<button className="press" onClick={back} style={{width:38,height:38,borderRadius:11,background:$.sf,border:`1px solid ${$.bd}`,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",color:$.txS}}><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8L10 13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></button>}<div style={{display:"flex",alignItems:"center",gap:9}}><LPlate $={$} size={30}/><span style={{fontSize:16,fontWeight:600,color:$.tx,letterSpacing:"-0.015em"}}>Test Day</span></div></div><div style={{display:"flex",alignItems:"center",gap:10}}>{dStep&&<span style={{fontSize:12,color:$.txM,fontWeight:500}}>{ret?"Editing":`${dStep}/${total}`}</span>}<button className="press" onClick={toggleDark} aria-label="Toggle theme" style={{width:34,height:34,borderRadius:10,background:$.sf,border:`1px solid ${$.bd}`,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",color:$.txS,transition:"all 0.2s"}}>{dk?<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="3.5" stroke="currentColor" strokeWidth="1.3"/><path d="M8 2v1.5M8 12.5V14M2 8h1.5M12.5 8H14M3.76 3.76l1.06 1.06M11.18 11.18l1.06 1.06M3.76 12.24l1.06-1.06M11.18 4.82l1.06-1.06" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/></svg>:<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M14 9.5A6 6 0 016.5 2 6.5 6.5 0 1014 9.5z" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/></svg>}</button></div></div>}
+    {showBanner&&step>=0&&<div style={{position:"relative",zIndex:3}}><AlphaBanner $={$} onDismiss={()=>{sShowBanner(false);ls("bannerOff",true)}}/></div>}
+    {step>=0&&<div style={{position:"relative",zIndex:2,padding:"20px 24px 0",display:"flex",alignItems:"center",justifyContent:"space-between"}}><div style={{display:"flex",alignItems:"center",gap:12}}>{step>0&&step<5&&<button className="press" onClick={back} style={{width:38,height:38,borderRadius:11,background:$.sf,border:`1px solid ${$.bd}`,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",color:$.txS}}><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8L10 13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></button>}<div style={{display:"flex",alignItems:"center",gap:9,cursor:"pointer"}} onClick={()=>{if(plan){sStep(7);sRet(false);sTab("plan")}else{sStep(-1)}}} className="press"><LPlate $={$} size={30}/><span style={{fontSize:16,fontWeight:600,color:$.tx,letterSpacing:"-0.015em"}}>Test Day</span></div></div><div style={{display:"flex",alignItems:"center",gap:10}}>{dStep&&<span style={{fontSize:12,color:$.txM,fontWeight:500}}>{ret?"Editing":`${dStep}/${total}`}</span>}<button className="press" onClick={toggleDark} aria-label="Toggle theme" style={{width:34,height:34,borderRadius:10,background:$.sf,border:`1px solid ${$.bd}`,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",color:$.txS,transition:"all 0.2s"}}>{dk?<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="3.5" stroke="currentColor" strokeWidth="1.3"/><path d="M8 2v1.5M8 12.5V14M2 8h1.5M12.5 8H14M3.76 3.76l1.06 1.06M11.18 11.18l1.06 1.06M3.76 12.24l1.06-1.06M11.18 4.82l1.06-1.06" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/></svg>:<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M14 9.5A6 6 0 016.5 2 6.5 6.5 0 1014 9.5z" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/></svg>}</button></div></div>}
     {showProg&&<div style={{position:"relative",zIndex:2,padding:"16px 24px 6px"}}><div style={{height:2.5,borderRadius:2,background:$.tr,overflow:"hidden"}}><div style={{height:"100%",borderRadius:2,background:$.fl,width:ret?"100%":`${((step+1)/total)*100}%`,transition:"width 0.5s cubic-bezier(0.16,1,0.3,1)"}}/></div></div>}
     <div style={{position:"relative",zIndex:1,flex:1,padding:step>=5||step===-1?"16px 20px 40px":"16px 20px 130px",paddingBottom:showTabs?"80px":undefined,display:"flex",flexDirection:"column",opacity:fading?0:1,transition:"opacity 0.13s ease",overflowY:"auto",WebkitOverflowScrolling:"touch"}}>
       {step===-1&&<Welcome onStart={()=>go(0,1)} $={$} dk={dk} toggleDark={toggleDark}/>}

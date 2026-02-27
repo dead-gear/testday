@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<title>Test Day — Get Test Ready</title>
+<meta name="description" content="Personalised driving test preparation for Dublin. Practice plans tailored to your test date, hours, and focus areas. 43 verified routes across 7 test centres." />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Test Day — Get Test Ready" />
+<meta property="og:description" content="Personalised practice plans for your Dublin driving test. 43 verified routes, 7 test centres. Free while in alpha." />
+<meta property="og:url" content="https://testday.ie" />
+<meta property="og:image" content="https://testday.ie/og-image.png" />
+<meta property="og:locale" content="en_IE" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Test Day — Get Test Ready" />
+<meta name="twitter:description" content="Personalised practice plans for your Dublin driving test." />
+<meta name="theme-color" content="#0a100c" media="(prefers-color-scheme: dark)" />
+<meta name="theme-color" content="#fafcfa" media="(prefers-color-scheme: light)" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="Test Day" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%23dc2626'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' fill='white' font-family='system-ui' font-weight='800' font-size='18'>L</text></svg>" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&display=swap" rel="stylesheet" />
+<script data-goatcounter="https://testday.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{font-family:'DM Sans',-apple-system,BlinkMacSystemFont,sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overscroll-behavior:none}
+  button{font-family:inherit;-webkit-tap-highlight-color:transparent}
+  a{color:inherit;text-decoration:none}
+  #root{min-height:100vh;min-height:100dvh}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes fadeDown{from{opacity:0;transform:translateY(-14px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes slideL{from{opacity:0;transform:translateX(44px)}to{opacity:1;transform:translateX(0)}}
+  @keyframes slideR{from{opacity:0;transform:translateX(-44px)}to{opacity:1;transform:translateX(0)}}
+  @keyframes scaleUp{from{opacity:0;transform:scale(0.9)}to{opacity:1;transform:scale(1)}}
+  @keyframes popTick{0%{transform:scale(0)}55%{transform:scale(1.2)}100%{transform:scale(1)}}
+  @keyframes bounceHero{0%{opacity:0;transform:scale(0.25) translateY(30px)}50%{opacity:1;transform:scale(1.06) translateY(-6px)}70%{transform:scale(0.96) translateY(2px)}100%{transform:scale(1) translateY(0)}}
+  @keyframes pulseGlow{0%,100%{box-shadow:0 0 0 0 rgba(74,222,128,0)}50%{box-shadow:0 0 18px 3px rgba(74,222,128,0.12)}}
+  @keyframes barGrow{from{width:0}}
+  @keyframes spinOrb{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+  @keyframes breathe{0%,100%{opacity:0.35;transform:scale(1)}50%{opacity:0.75;transform:scale(1.05)}}
+  @keyframes particle{0%{opacity:1;transform:translate(0,0) scale(1)}100%{opacity:0;transform:translate(var(--px),var(--py)) scale(0)}}
+  @keyframes welcomeFade{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes countPop{0%{transform:scale(1)}40%{transform:scale(1.3)}100%{transform:scale(1)}}
+  @keyframes slideDown{from{opacity:0;transform:translateY(-100%)}to{opacity:1;transform:translateY(0)}}
+  @keyframes expandIn{from{opacity:0;max-height:0}to{opacity:1;max-height:600px}}
+  .press{transition:transform 0.12s cubic-bezier(0.2,0,0,1)}.press:active{transform:scale(0.96)!important}
+  html,body{transition:background-color 0.45s cubic-bezier(0.4,0,0.2,1)}
+  [data-theme-wrap],[data-theme-wrap] div,[data-theme-wrap] span,[data-theme-wrap] button,[data-theme-wrap] p,[data-theme-wrap] a,[data-theme-wrap] h2{transition:background-color 0.4s cubic-bezier(0.4,0,0.2,1),border-color 0.4s cubic-bezier(0.4,0,0.2,1),color 0.35s cubic-bezier(0.4,0,0.2,1),box-shadow 0.4s cubic-bezier(0.4,0,0.2,1)}
+  .press{transition:transform 0.12s cubic-bezier(0.2,0,0,1),background-color 0.4s cubic-bezier(0.4,0,0.2,1),border-color 0.4s cubic-bezier(0.4,0,0.2,1),color 0.35s cubic-bezier(0.4,0,0.2,1)!important}
+  .press-deep:active{transform:scale(0.93)!important}
+  .cascade>*{opacity:0;animation:fadeUp 0.48s cubic-bezier(0.16,1,0.3,1) forwards}
+  .cascade>*:nth-child(1){animation-delay:0.02s}.cascade>*:nth-child(2){animation-delay:0.06s}
+  .cascade>*:nth-child(3){animation-delay:0.1s}.cascade>*:nth-child(4){animation-delay:0.14s}
+  .cascade>*:nth-child(5){animation-delay:0.18s}.cascade>*:nth-child(6){animation-delay:0.22s}
+  .cascade>*:nth-child(7){animation-delay:0.26s}.cascade>*:nth-child(8){animation-delay:0.3s}
+  .cascade>*:nth-child(9){animation-delay:0.34s}.cascade>*:nth-child(10){animation-delay:0.38s}
+  .cascade>*:nth-child(11){animation-delay:0.42s}.cascade>*:nth-child(12){animation-delay:0.46s}
+  .grid-cascade>*{opacity:0;animation:scaleUp 0.38s cubic-bezier(0.16,1,0.3,1) forwards}
+  .grid-cascade>*:nth-child(1){animation-delay:0.02s}.grid-cascade>*:nth-child(2){animation-delay:0.05s}
+  .grid-cascade>*:nth-child(3){animation-delay:0.08s}.grid-cascade>*:nth-child(4){animation-delay:0.11s}
+  .grid-cascade>*:nth-child(5){animation-delay:0.14s}.grid-cascade>*:nth-child(6){animation-delay:0.17s}
+  .grid-cascade>*:nth-child(7){animation-delay:0.2s}.grid-cascade>*:nth-child(8){animation-delay:0.23s}
+  .grid-cascade>*:nth-child(9){animation-delay:0.26s}.grid-cascade>*:nth-child(10){animation-delay:0.29s}
+</style>
+<script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+<script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+<script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.9/babel.min.js"></script>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+const{useState,useEffect,useRef,useCallback,useMemo}=React;
+const FEEDBACK_URL="https://tally.so/r/VLZ8la";
+const VERSION="0.9.1-alpha";
+
+/* ─── HOOKS ─── */
+function useDark(){const[override,setOverride]=useState(null);const[sys,sSys]=useState(()=>window.matchMedia?.("(prefers-color-scheme:dark)").matches);useEffect(()=>{const m=window.matchMedia("(prefers-color-scheme:dark)");const h=e=>sSys(e.matches);m.addEventListener("change",h);return()=>m.removeEventListener("change",h)},[]);const dk=override!==null?override:sys;const toggle=useCallback(()=>setOverride(prev=>prev!==null?prev?false:true:sys?false:true),[sys]);return[dk,toggle]}
+function useRoll(t,ms=500){const[v,s]=useState(t);const r=useRef(null);useEffect(()=>{const st=v,d=t-st;if(!d)return;const t0=performance.now();const tick=now=>{const p=Math.min((now-t0)/ms,1);s(Math.round(st+d*(1-Math.pow(1-p,3))));if(p<1)r.current=requestAnimationFrame(tick)};r.current=requestAnimationFrame(tick);return()=>cancelAnimationFrame(r.current)},[t]);return v}
+function useSlider(init,min,max,onChange){
+  const ref=useRef(null);const[drag,sD]=useState(false);
+  const val=useCallback(e=>{const t=ref.current;if(!t)return init;const r=t.getBoundingClientRect();const cx=e.touches?e.touches[0].clientX:e.clientX;return Math.round(min+Math.max(0,Math.min(1,(cx-r.left)/r.width))*(max-min))},[min,max,init]);
+  const start=useCallback(e=>{e.preventDefault();sD(true);onChange(val(e));
+    const mv=ev=>{ev.preventDefault();onChange(val(ev))};const up=()=>{sD(false);document.removeEventListener("mousemove",mv);document.removeEventListener("mouseup",up);document.removeEventListener("touchmove",mv);document.removeEventListener("touchend",up)};
+    document.addEventListener("mousemove",mv,{passive:false});document.addEventListener("mouseup",up);document.addEventListener("touchmove",mv,{passive:false});document.addEventListener("touchend",up)},[val,onChange]);
+  return{ref,start,drag};
+}
+
+/* ─── THEME ─── */
+function useTheme(dk){
+  return useMemo(()=>{
+    const g=dk?"#4ade80":"#16a34a",gs=dk?"rgba(74,222,128,0.08)":"rgba(22,163,74,0.05)",gb=dk?"rgba(74,222,128,0.22)":"rgba(22,163,74,0.15)",gg=dk?"rgba(74,222,128,0.06)":"rgba(22,163,74,0.08)";
+    const fp={fpBg:dk?"rgba(239,68,68,0.08)":"rgba(239,68,68,0.06)",fpBd:dk?"rgba(239,68,68,0.15)":"rgba(239,68,68,0.12)",fpTx:dk?"#f87171":"#dc2626"};
+    const pl={plBg:"#dc2626",plSh:"0 2px 8px rgba(220,38,38,0.25)"};
+    const base={g,gs,gb,gg,...fp,...pl};
+    if(dk)return{...base,bg:"#0a100c",bgG:"radial-gradient(ellipse 90% 50% at 50% -5%,rgba(22,163,74,0.06) 0%,transparent 60%)",sf:"rgba(255,255,255,0.035)",sfS:"rgba(74,222,128,0.06)",bd:"rgba(255,255,255,0.08)",bdS:"rgba(255,255,255,0.05)",bdA:"rgba(74,222,128,0.24)",tx:"#f0f4f1",txH:"#ffffff",txB:"#c8d3da",txS:"#8a9baa",txM:"#536878",txF:"#2a3b47",sh:"0 1px 2px rgba(0,0,0,0.5)",shA:"0 12px 48px rgba(74,222,128,0.08),0 2px 8px rgba(0,0,0,0.4)",fade:"linear-gradient(0deg,#0a100c 50%,transparent 100%)",tr:"rgba(255,255,255,0.07)",fl:"linear-gradient(90deg,#16a34a,#4ade80)",thBg:"#0f1f15",thBd:"#4ade80",bar:"rgba(255,255,255,0.05)",barF:"linear-gradient(90deg,rgba(74,222,128,0.6),rgba(74,222,128,0.9))",dv:"rgba(255,255,255,0.06)",btn:"linear-gradient(135deg,#16a34a 0%,#0d7a32 100%)",btnSh:"0 4px 24px rgba(22,163,74,0.25),0 1px 3px rgba(0,0,0,0.3),inset 0 1px 0 rgba(255,255,255,0.1)",btn2:"rgba(255,255,255,0.05)",btn2Bd:"rgba(255,255,255,0.1)",ck:"linear-gradient(135deg,#16a34a,#4ade80)",chBg:"rgba(255,255,255,0.03)",chBd:"rgba(255,255,255,0.09)",chA:"rgba(74,222,128,0.08)",chAb:"rgba(74,222,128,0.3)",dyBg:"rgba(255,255,255,0.03)",dyBd:"rgba(255,255,255,0.08)",dyA:"rgba(74,222,128,0.1)",dyAb:"rgba(74,222,128,0.3)",prBg:"rgba(255,255,255,0.03)",prBd:"rgba(255,255,255,0.08)",prA:"rgba(74,222,128,0.06)",prAb:"rgba(74,222,128,0.22)",rD:"rgba(74,222,128,0.06)",rDb:"rgba(74,222,128,0.15)",rP:"rgba(255,255,255,0.025)",rPb:"rgba(255,255,255,0.06)",ed:"rgba(255,255,255,0.18)",stBg:"rgba(255,255,255,0.05)",stBd:"rgba(255,255,255,0.1)",tabBg:"rgba(12,18,14,0.95)",tabBd:"rgba(255,255,255,0.08)",alBg:"rgba(74,222,128,0.06)",alBd:"rgba(74,222,128,0.15)",alTx:"#4ade80",dtBg:"rgba(255,255,255,0.025)",dtBd:"rgba(255,255,255,0.06)",dtSk:"rgba(74,222,128,0.12)"};
+    return{...base,bg:"#fafcfa",bgG:"radial-gradient(ellipse 90% 50% at 50% -5%,rgba(22,163,74,0.05) 0%,transparent 50%)",sf:"rgba(255,255,255,0.85)",sfS:"rgba(22,163,74,0.04)",bd:"rgba(0,0,0,0.06)",bdS:"rgba(0,0,0,0.03)",bdA:"rgba(22,163,74,0.22)",tx:"#161a17",txH:"#080a08",txB:"#383f42",txS:"#5f6b73",txM:"#9ca7af",txF:"#d0d5d8",sh:"0 1px 2px rgba(0,0,0,0.04)",shA:"0 12px 48px rgba(22,163,74,0.08),0 2px 8px rgba(0,0,0,0.03)",fade:"linear-gradient(0deg,#fafcfa 50%,transparent 100%)",tr:"rgba(0,0,0,0.05)",fl:"linear-gradient(90deg,#16a34a,#22c55e)",thBg:"#ffffff",thBd:"#16a34a",bar:"rgba(0,0,0,0.04)",barF:"linear-gradient(90deg,#16a34a,#22c55e)",dv:"rgba(0,0,0,0.04)",btn:"linear-gradient(135deg,#16a34a 0%,#15803d 100%)",btnSh:"0 4px 24px rgba(22,163,74,0.18),0 1px 3px rgba(0,0,0,0.06),inset 0 1px 0 rgba(255,255,255,0.15)",btn2:"rgba(0,0,0,0.02)",btn2Bd:"rgba(0,0,0,0.08)",ck:"linear-gradient(135deg,#16a34a,#22c55e)",chBg:"rgba(0,0,0,0.015)",chBd:"rgba(0,0,0,0.06)",chA:"rgba(22,163,74,0.06)",chAb:"rgba(22,163,74,0.26)",dyBg:"rgba(0,0,0,0.015)",dyBd:"rgba(0,0,0,0.06)",dyA:"rgba(22,163,74,0.06)",dyAb:"rgba(22,163,74,0.24)",prBg:"rgba(0,0,0,0.015)",prBd:"rgba(0,0,0,0.06)",prA:"rgba(22,163,74,0.04)",prAb:"rgba(22,163,74,0.22)",rD:"rgba(22,163,74,0.04)",rDb:"rgba(22,163,74,0.12)",rP:"rgba(0,0,0,0.01)",rPb:"rgba(0,0,0,0.05)",ed:"rgba(0,0,0,0.12)",stBg:"rgba(0,0,0,0.03)",stBd:"rgba(0,0,0,0.08)",tabBg:"rgba(250,252,250,0.95)",tabBd:"rgba(0,0,0,0.06)",alBg:"rgba(22,163,74,0.06)",alBd:"rgba(22,163,74,0.12)",alTx:"#16a34a",dtBg:"rgba(0,0,0,0.015)",dtBd:"rgba(0,0,0,0.04)",dtSk:"rgba(22,163,74,0.15)"};
+  },[dk]);
+}
+
+/* ─── DATA ─── */
+const CENTRE_ADDR={
+  raheny:"RSA+Raheny+Driving+Test+Centre,+All+Saints+Park,+Raheny,+Dublin+5",
+  killester:"RSA+Killester+Driving+Test+Centre,+St+Brigids+Parish+Resource+Centre,+306+Howth+Rd,+Dublin+5",
+  finglas:"RSA+Finglas+Driving+Test+Centre,+Jamestown+Business+Park,+Jamestown+Road,+Finglas,+Dublin+11",
+  tallaght:"RSA+Tallaght+Driving+Test+Centre,+Premier+Business+Park,+52+Broomhill+Road,+Tallaght,+Dublin+24",
+  churchtown:"RSA+Churchtown+Driving+Test+Centre,+5+Braemor+Road,+Churchtown,+Dublin+14",
+  dunlaoghaire:"RSA+Dun+Laoghaire+Driving+Test+Centre,+Pottery+Road,+Dun+Laoghaire,+Co+Dublin",
+  mulhuddart:"RSA+Mulhuddart+Driving+Test+Centre,+Carlton+Hotel,+Church+Road,+Tyrrelstown,+Dublin+15"
+};
+/* ── MAPS URL BUILDER ──────────────────────────────────────────────
+   CRITICAL — DO NOT ADD encodeURIComponent TO WAYPOINTS.
+   The addressWaypoints use + for spaces and are already URL-safe.
+   Encoding turns + into %2B which Google Maps reads as literal "+"
+   instead of spaces, causing waypoints to mis-geocode or drop.
+   The | pipe delimiter must also stay raw for Google to parse it.
+   This was broken and fixed in v0.9.1 — do not regress.
+   ────────────────────────────────────────────────────────────────── */
+function buildMapsUrl(route){
+  const origin=CENTRE_ADDR[route.centre]||CENTRE_ADDR.raheny;
+  if(route.addressWaypoints&&route.addressWaypoints.length>0){
+    return `https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${origin}&waypoints=${route.addressWaypoints.join("|")}&travelmode=driving`;
+  }
+  return `https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${origin}&travelmode=driving`;
+}
+const CENTRES=[{id:"churchtown",name:"Churchtown",routes:7},{id:"dunlaoghaire",name:"Dún Laoghaire",routes:7},{id:"finglas",name:"Finglas",routes:7},{id:"killester",name:"Killester",routes:2},{id:"mulhuddart",name:"Mulhuddart",routes:7},{id:"raheny",name:"Raheny",routes:6},{id:"tallaght",name:"Tallaght",routes:7}];
+const TFS=[{id:"thismonth",l:"This month"},{id:"onetwo",l:"1–2 months"},{id:"twothree",l:"2–3 months"},{id:"threePlus",l:"3+ months"}];
+const DL=["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
+const PRESETS=[{id:"light",l:"Light",d:[2,5]},{id:"steady",l:"Steady",d:[0,2,4,5]},{id:"allin",l:"All in",d:[0,1,2,3,4,5,6]}];
+const DURS_W=[{id:30,l:"30m"},{id:45,l:"45m"},{id:60,l:"1hr"},{id:90,l:"1.5hr"},{id:120,l:"2hr"}];
+const SKILLS=[
+  {id:"roundabouts",l:"Roundabouts",i:"↻"},
+  {id:"rightturns",l:"Right turns",i:"↱"},
+  {id:"lanechange",l:"Lane discipline",i:"⇄"},
+  {id:"parking",l:"Parking",i:"▣"},
+  {id:"hillstart",l:"Hill starts",i:"△"},
+  {id:"dualcarriage",l:"Dual carriageways",i:"⇉"},
+  {id:"junctions",l:"Junctions",i:"╋"},
+  {id:"observation",l:"Mirrors & Observation",i:"◎"},
+  {id:"turnabout",l:"Three-point turn",i:"⇌"},
+  {id:"reversecorner",l:"Reverse around corner",i:"↶"},
+];
+
+const ROUTES=[
+  {id:"r1",name:"Clontarf Coastal Loop",dur:35,diff:3,centre:"raheny",
+   skills:["lanechange", "hillstart", "reversecorner", "turnabout", "observation"],
+   desc:"Watermill Rd → coast → Mount Prospect → Baymount → Conquer Hill → Chelsea Gardens → Vernon Ave",
+   tips:["Check right mirror past hatched markings","1st gear for right at mini roundabouts","Park tight to kerb before turnabout"],
+   addressWaypoints:["Watermill+Road,+Raheny,+Dublin","Clontarf+Road+near+Bull+Wall,+Clontarf,+Dublin+3","Mount+Prospect+Avenue,+Clontarf,+Dublin+3","Baymount+Park,+Clontarf,+Dublin","Conquer+Hill+Road,+Clontarf,+Dublin","Chelsea+Gardens,+Clontarf,+Dublin","Vernon+Avenue,+Clontarf,+Dublin"]},
+  {id:"r2",name:"Raheny Village",dur:23,diff:2,centre:"raheny",
+   skills:["roundabouts", "junctions", "observation"],
+   desc:"Village → Harmonstown Rd → Springdale → Ennafort → return",
+   tips:["MSPSL at every junction","Yield to right at roundabouts","1m clearance from parked cars"],
+   addressWaypoints:["Main+Street,+Raheny,+Dublin+5","Harmonstown+Road,+Raheny,+Dublin+5","Springdale+Road,+Raheny,+Dublin+5","Ennafort+Park,+Raheny,+Dublin+5"]},
+  {id:"r3",name:"Artane Roundabout",dur:30,diff:4,centre:"raheny",
+   skills:["roundabouts", "junctions", "rightturns"],
+   desc:"Howth Rd → Artane Castle roundabout → Kilmore Rd. #1 fail location.",
+   tips:["Green = proceed to middle, wait, turn","Follow road markings at roundabout","Let other driver commit first"],
+   addressWaypoints:["Howth+Road,+Raheny,+Dublin+5","Artane+Castle+Shopping+Centre,+Artane,+Dublin+5","Kilmore+Road,+Artane,+Dublin+5"]},
+  {id:"r4",name:"Killester Residential",dur:16,diff:1,centre:"killester",
+   skills:["junctions", "hillstart", "observation"],
+   desc:"Quiet residential → Howth Rd → Cill Eanna. Confidence builder.",
+   tips:["GOSHO every stop","Build confidence here","Smooth starts — no jerking"],
+   addressWaypoints:["Killester+Avenue,+Dublin+5","Howth+Road,+Killester,+Dublin+5","Cill+Eanna,+Raheny,+Dublin+5"]},
+  {id:"r5",name:"Dollymount Coast",dur:30,diff:3,centre:"raheny",
+   skills:["lanechange", "observation", "reversecorner"],
+   desc:"Watermill → Clontarf coast (Dollymount) → St Assam's → return",
+   tips:["Signal early","Drop speed for narrowing","Firm grip in wind"],
+   addressWaypoints:["Watermill+Road,+Raheny,+Dublin","Clontarf+Road,+Dollymount,+Dublin+3","St+Assams+Road,+Raheny,+Dublin+5"]},
+  {id:"r6",name:"Harmonstown Deep",dur:24,diff:2,centre:"killester",
+   skills:["turnabout", "junctions", "hillstart"],
+   desc:"Harmonstown → Avondale Park → Brookwood Ave → return",
+   tips:["Check all around before reversing","Bite point → handbrake → mirror → go","30-40km/h in residential"],
+   addressWaypoints:["Harmonstown+Road,+Raheny,+Dublin+5","Avondale+Park,+Raheny,+Dublin+5","Brookwood+Avenue,+Artane,+Dublin+5"]},
+  {id:"r7",name:"Edenmore Extension",dur:33,diff:4,centre:"raheny",
+   skills:["lanechange", "roundabouts", "hillstart", "observation"],
+   desc:"Edenmore → Artane Castle → Malahide Rd → return",
+   tips:["Scan markings 50m ahead","Don't force gaps","Bus lanes: 7-10am & 4-7pm Mon-Sat"],
+   addressWaypoints:["Edenmore+Drive,+Raheny,+Dublin+5","Artane+Castle+Shopping+Centre,+Artane,+Dublin+5","Malahide+Road,+Artane,+Dublin+5"]},
+  {id:"r8",name:"Full Test Simulation",dur:42,diff:5,centre:"raheny",
+   skills:["observation"],
+   desc:"Every manoeuvre, every terrain, all hazards. The gauntlet.",
+   tips:["Only after others done twice","Practice at expected test time","Handle this → test feels easier"],
+   addressWaypoints:["Raheny+Road,+Raheny,+Dublin+5","Artane+Castle+Shopping+Centre,+Artane,+Dublin+5","Clontarf+Road,+Dollymount,+Dublin+3","Ennafort+Park,+Raheny,+Dublin+5","Cill+Eanna,+Raheny,+Dublin+5"]},
+  {id:"f1",name:"Ballygall Residential",dur:11,diff:2,centre:"finglas",
+   skills:["reversecorner", "turnabout", "roundabouts", "junctions"],
+   desc:"Jamestown Rd → Clancy Ave → McKee Rd → Finglas Park → Ballygall Ave → Glasnevin Ave → return",
+   tips:["1st gear for the Clancy Ave turn — slow right down","Yield to right at every mini roundabout","Check mirrors before and after each speed ramp"],
+   addressWaypoints:["Clancy+Avenue,+Finglas,+Dublin+11","McKee+Road,+Finglas,+Dublin+11","Finglas+Park,+Finglas,+Dublin+11","Ballygall+Avenue,+Finglas,+Dublin+11","Glasnevin+Avenue,+Dublin+11"]},
+  {id:"f2",name:"Cedarwood Estate",dur:24,diff:2,centre:"finglas",
+   skills:["reversecorner", "turnabout", "junctions", "observation"],
+   desc:"Jamestown Rd → Sycamore Rd → Cedarwood Rd → reverse & turnabout → return",
+   tips:["This is a manoeuvre-focused route — nail reverse and turnabout here","2nd gear over speed ramps at 20km/h","Check all around before reversing"],
+   addressWaypoints:["Sycamore+Road,+Finglas,+Dublin+11","Cedarwood+Road,+Finglas,+Dublin+11","Cedarwood+Park,+Finglas,+Dublin+11","Oakwood+Park,+Finglas,+Dublin+11"]},
+  {id:"f3",name:"Willow Park Loop",dur:33,diff:3,centre:"finglas",
+   skills:["lanechange", "roundabouts", "hillstart", "observation"],
+   desc:"Ballygall Rd → Willow Park → Grove Park → Beneavin Drive → Glasilawn → return",
+   tips:["2nd gear approaching roundabouts at 20km/h","Read road markings 50m ahead at roundabouts","Bus lanes: check hours on signs — 7-10am & 4-7pm"],
+   addressWaypoints:["Ballygall+Road+West,+Finglas,+Dublin+11","Willow+Park+Road,+Finglas,+Dublin+11","Grove+Park+Avenue,+Finglas,+Dublin+11","Beneavin+Drive,+Finglas,+Dublin+11","Glasilawn+Road,+Finglas,+Dublin+11"]},
+  {id:"f4",name:"Finglas Village",dur:27,diff:4,centre:"finglas",
+   skills:["lanechange", "junctions", "rightturns", "observation"],
+   desc:"Jamestown → N2 → Finglas Village one-way → Seamus Ennis Rd → Beneavin → return. #1 fail zone.",
+   tips:["The village right turn is NOT the first right you see","Watch for cars overtaking on the outside when turning right","Position early in the correct lane — last-minute changes fail here"],
+   addressWaypoints:["Old+Finglas+Road,+Finglas,+Dublin+11","Finglas+Road,+Finglas+Village,+Dublin+11","Seamus+Ennis+Road,+Finglas,+Dublin+11","Beneavin+Road,+Finglas,+Dublin+11","Ballygall+Road+East,+Dublin+11"]},
+  {id:"f5",name:"Glasnevin North",dur:30,diff:3,centre:"finglas",
+   skills:["junctions", "observation"],
+   desc:"Glasnevin Ave → Tolka Estate → Griffith Ave Extension → Ballygall Rd East → return",
+   tips:["Full MSPSL at every junction","Anticipate lights — ease off early rather than harsh braking","Keep left unless overtaking or turning right"],
+   addressWaypoints:["Glasnevin+Avenue,+Dublin+11","Tolka+Estate,+Finglas,+Dublin+11","Griffith+Avenue+Extension,+Dublin+11","Ballygall+Road+East,+Dublin+11"]},
+  {id:"f6",name:"Pinewood Hill Circuit",dur:19,diff:3,centre:"finglas",
+   skills:["turnabout", "roundabouts", "hillstart", "observation"],
+   desc:"Willow Park → Pinewood Ave → Cedarwood Rise → hill start → return via Glasnevin Ave",
+   tips:["Handbrake up fully for hill start — find bite point before releasing","Signal early at mini roundabouts","1m clearance from parked cars minimum"],
+   addressWaypoints:["Willow+Park+Road,+Finglas,+Dublin+11","Pinewood+Avenue,+Finglas,+Dublin+11","Cedarwood+Rise,+Finglas,+Dublin+11","Willow+Park+Crescent,+Finglas,+Dublin+11","Grove+Park+Road,+Finglas,+Dublin+11"]},
+  {id:"f7",name:"Full Finglas Simulation",dur:37,diff:5,centre:"finglas",
+   skills:["observation"],
+   desc:"All manoeuvres, village one-way, N2 junction, roundabouts, estates. The gauntlet.",
+   tips:["Only attempt after completing other Finglas routes twice","Practice at expected test time","If you handle this, the test feels easier"],
+   addressWaypoints:["Clancy+Avenue,+Finglas,+Dublin+11","McKee+Road,+Finglas,+Dublin+11","Ballygall+Road+West,+Finglas,+Dublin+11","Willow+Park+Road,+Finglas,+Dublin+11","Finglas+Road,+Finglas+Village,+Dublin+11","Seamus+Ennis+Road,+Finglas,+Dublin+11"]},
+  {id:"t1",name:"Redwood Residential",dur:25,diff:2,centre:"tallaght",
+   skills:["reversecorner", "turnabout", "junctions", "observation"],
+   desc:"Broomhill → Greenhills → Mayberry Rd → Redwood estate → reverse & turnabout → return",
+   tips:["2nd gear for speed ramps at 20km/h","Full observation before reversing","Redwood Way is the classic reverse spot — practice it"],
+   addressWaypoints:["Greenhills+Road,+Tallaght,+Dublin+24","Mayberry+Road,+Tallaght,+Dublin+24","Redwood+Drive,+Tallaght,+Dublin+24","Redwood+Park,+Tallaght,+Dublin+24"]},
+  {id:"t2",name:"Kilnamanagh Loop",dur:39,diff:2,centre:"tallaght",
+   skills:["roundabouts", "dualcarriage", "observation"],
+   desc:"Airton Rd → Belgard Rd → Kilnamanagh estate → manoeuvres → return",
+   tips:["Build to 60km/h on Belgard Road — don't stay at 50","Lane position early at roundabouts","Drop to 2nd gear for estate ramps"],
+   addressWaypoints:["Airton+Road,+Tallaght,+Dublin+24","Belgard+Road,+Tallaght,+Dublin+24","Kilnamanagh+Road,+Tallaght,+Dublin+24","Parkhill+Road,+Tallaght,+Dublin+24"]},
+  {id:"t3",name:"Cookstown Industrial",dur:21,diff:3,centre:"tallaght",
+   skills:["lanechange", "roundabouts", "junctions", "observation"],
+   desc:"Belgard Rd → Belgard Square → Cookstown Way → Industrial Estate → Old Belgard Rd → return",
+   tips:["Scan road markings well ahead at each roundabout","MSPSL for every lane change","Check for Luas trams at crossings — they have priority"],
+   addressWaypoints:["Airton+Road,+Tallaght,+Dublin+24","Belgard+Road,+Tallaght,+Dublin+24","Belgard+Square+North,+Tallaght,+Dublin+24","Cookstown+Way,+Tallaght,+Dublin+24","Old+Belgard+Road,+Tallaght,+Dublin+24"]},
+  {id:"t4",name:"Tallaght Village Right Turn",dur:30,diff:4,centre:"tallaght",
+   skills:["lanechange", "observation"],
+   desc:"Greenhills → Tallaght Village → right turn onto Greenhills Rd → Bancroft → return. #1 fail zone.",
+   tips:["Wait for proper lane AFTER hatch markings — at the arrow","Keep right to show intention — lets left traffic pass","You cannot get faulted for obeying rules of the road"],
+   addressWaypoints:["Greenhills+Road,+Tallaght,+Dublin+24","Main+Road,+Tallaght+Village,+Dublin+24","Bancroft+Road,+Tallaght,+Dublin+24","Castletymon+Road,+Tallaght,+Dublin+24","St+Aongus+Road,+Tallaght,+Dublin+24"]},
+  {id:"t5",name:"Tymon North",dur:46,diff:3,centre:"tallaght",
+   skills:["roundabouts", "observation"],
+   desc:"Greenhills → Tymon Rd North → St Aongus → Castle Lawns → manoeuvres → return",
+   tips:["Slow and steady over ramps — hitting them fast = Grade 2 fault","Castle Lawns has numerous manoeuvre spots","30km/h in residential areas with ramps"],
+   addressWaypoints:["Greenhills+Road,+Tallaght,+Dublin+24","Tymon+Road+North,+Tallaght,+Dublin+24","St+Aongus+Road,+Tallaght,+Dublin+24","Castle+Lawns,+Tallaght,+Dublin+24"]},
+  {id:"t6",name:"Belgard Heights & Cookstown",dur:37,diff:3,centre:"tallaght",
+   skills:["lanechange", "roundabouts", "hillstart", "reversecorner"],
+   desc:"Belgard Rd → Belgard Heights → Cookstown Rd → Old Belgard Rd → return",
+   tips:["Belgard Heights is a common all-in-one manoeuvre spot","Plan your lane 100m before roundabouts","Industrial estate roads can be deceptively wide — stay left"],
+   addressWaypoints:["Airton+Road,+Tallaght,+Dublin+24","Belgard+Road,+Tallaght,+Dublin+24","Belgard+Heights,+Tallaght,+Dublin+24","Cookstown+Road,+Tallaght,+Dublin+24","Old+Belgard+Road,+Tallaght,+Dublin+24"]},
+  {id:"t7",name:"Full Tallaght Simulation",dur:55,diff:5,centre:"tallaght",
+   skills:["observation"],
+   desc:"Village right turn, dual carriageway, Cookstown, residential manoeuvres. Everything.",
+   tips:["Only after completing other Tallaght routes","Practice at your scheduled test time","Handle this and the test feels lighter"],
+   addressWaypoints:["Greenhills+Road,+Tallaght,+Dublin+24","Main+Road,+Tallaght+Village,+Dublin+24","Airton+Road,+Tallaght,+Dublin+24","Belgard+Road,+Tallaght,+Dublin+24","Cookstown+Way,+Tallaght,+Dublin+24","Redwood+Drive,+Tallaght,+Dublin+24"]},
+  {id:"c1",name:"Landscape Local",dur:22,diff:1,centre:"churchtown",
+   skills:["reversecorner", "turnabout", "junctions", "observation"],
+   desc:"Braemor Rd → Landscape Park → Landscape Ave → reverse & turnabout → return. Confidence builder.",
+   tips:["Crawl out of the test centre — stop and look both ways","This is the gentlest introduction to the area","Master the centre exit before anything else"],
+   addressWaypoints:["Braemor+Road,+Churchtown,+Dublin+14","Landscape+Park,+Churchtown,+Dublin+14","Landscape+Avenue,+Churchtown,+Dublin+14"]},
+  {id:"c2",name:"Orwell & Dartry",dur:24,diff:3,centre:"churchtown",
+   skills:["reversecorner", "lanechange", "junctions", "hillstart"],
+   desc:"Orwell Rd → Orwell Park → Dartry Rd → Temple Rd reverse → Highfield Rd → return",
+   tips:["Temple Road is the classic Churchtown reverse spot","Bus lanes have hours — check signs","Position early for right turns at lights"],
+   addressWaypoints:["Orwell+Road,+Rathgar,+Dublin+6","Orwell+Park,+Rathgar,+Dublin+6","Dartry+Road,+Dublin+6","Temple+Road,+Dartry,+Dublin+6","Highfield+Road,+Rathgar,+Dublin+6"]},
+  {id:"c3",name:"Rathmines & Cowper",dur:26,diff:4,centre:"churchtown",
+   skills:["lanechange", "rightturns", "observation"],
+   desc:"Orwell → Dartry → Neville Rd → Rathmines Rd Upper → Cowper Rd → Palmerston → return",
+   tips:["Mirror, signal, position EARLY for every right turn","Bus lanes: Mon-Sat 7-10am & 4-7pm typically","Palmerston is elegant but tight — 1m from parked cars"],
+   addressWaypoints:["Orwell+Road,+Rathgar,+Dublin+6","Dartry+Road,+Dublin+6","Highfield+Road,+Rathgar,+Dublin+6","Rathmines+Road+Upper,+Dublin+6","Cowper+Road,+Dublin+6","Palmerston+Road,+Dublin+6"]},
+  {id:"c4",name:"Dropping Well Hill",dur:20,diff:3,centre:"churchtown",
+   skills:["junctions", "hillstart", "observation"],
+   desc:"Dartry → Dropping Well pub hill start → Milltown Rd → Churchtown Rd Lower → return",
+   tips:["Handbrake fully up on the hill — no rollback tolerated","Find bite point before checking mirrors and releasing","Churchtown Rd Lower is a common hill start backup spot"],
+   addressWaypoints:["Orwell+Road,+Rathgar,+Dublin+6","Orwell+Park,+Rathgar,+Dublin+6","Dartry+Road,+Dublin+6","Milltown+Road,+Dublin+6","Churchtown+Road+Lower,+Dublin+14"]},
+  {id:"c5",name:"Eaton Brae & Rathfarnham",dur:22,diff:3,centre:"churchtown",
+   skills:["reversecorner", "turnabout", "hillstart", "observation"],
+   desc:"Orwell Rd → Eaton Brae → Woodside Drive → Riverside Drive → return via Braemor",
+   tips:["Eaton Brae and Green Park are classic turnabout/reverse spots","Riverside Drive: reverse around both corners for practice","These estates are quiet but testers expect full observation"],
+   addressWaypoints:["Orwell+Road,+Rathgar,+Dublin+6","Eaton+Brae,+Rathgar,+Dublin+6","Woodside+Drive,+Rathfarnham,+Dublin+14","Riverside+Drive,+Rathfarnham,+Dublin+14","Braemor+Road,+Churchtown,+Dublin+14"]},
+  {id:"c6",name:"Rathgar Village",dur:26,diff:4,centre:"churchtown",
+   skills:["lanechange", "rightturns", "observation"],
+   desc:"Orwell → Rathgar Village lights → Church Ave → Rathmines → Dartry → return",
+   tips:["Know the lane layout at Rathgar Village before you arrive","Church Avenue wraps around the church — stay left","This is the toughest direction from Churchtown — save it for later"],
+   addressWaypoints:["Orwell+Road,+Rathgar,+Dublin+6","Rathgar+Road,+Rathgar,+Dublin+6","Church+Avenue,+Rathmines,+Dublin+6","Rathmines+Road+Upper,+Dublin+6","Dartry+Road,+Dublin+6"]},
+  {id:"c7",name:"Full Churchtown Simulation",dur:39,diff:5,centre:"churchtown",
+   skills:["observation"],
+   desc:"Centre exit, Rathgar, Rathmines, Dartry, all manoeuvres. Hardest Dublin centre at full intensity.",
+   tips:["Only after mastering other Churchtown routes","The centre exit alone can set the tone — nail it first","If you pass this, Churchtown test day feels manageable"],
+   addressWaypoints:["Orwell+Road,+Rathgar,+Dublin+6","Dartry+Road,+Dublin+6","Temple+Road,+Dartry,+Dublin+6","Rathmines+Road+Upper,+Dublin+6","Milltown+Road,+Dublin+6","Churchtown+Road+Lower,+Dublin+14"]},
+  {id:"d1",name:"Watsons Estate",dur:25,diff:2,centre:"dunlaoghaire",
+   skills:["reversecorner", "turnabout", "junctions", "hillstart"],
+   desc:"Pottery Rd → Johnstown Rd → Watsons Estate → all manoeuvres → return. Confidence builder.",
+   tips:["Watsons Estate is THE manoeuvre spot — know it inside out","Slow right down exiting the test centre car park","This is the easiest Dún Laoghaire route — build confidence here"],
+   addressWaypoints:["Pottery+Road,+Dun+Laoghaire,+Co+Dublin","Johnstown+Road,+Dun+Laoghaire,+Co+Dublin","Rochestown+Avenue,+Dun+Laoghaire,+Co+Dublin"]},
+  {id:"d2",name:"Monkstown Farm Loop",dur:17,diff:3,centre:"dunlaoghaire",
+   skills:["lanechange", "roundabouts", "junctions", "observation"],
+   desc:"Bakers Corner → Monkstown Farm → Sallynoggin → roundabouts → return",
+   tips:["Bakers Corner: use the right slip lane, wait for filter light","Graduate roundabout: left lane for 1st exit, right for 2nd/3rd","Keep scanning ahead — roundabouts come fast in this area"],
+   addressWaypoints:["Kill+Avenue,+Dun+Laoghaire,+Co+Dublin","Monkstown+Farm,+Dun+Laoghaire,+Co+Dublin","Sallynoggin+Road,+Dun+Laoghaire,+Co+Dublin","Rochestown+Avenue,+Dun+Laoghaire,+Co+Dublin"]},
+  {id:"d3",name:"Glenageary & Killiney",dur:24,diff:3,centre:"dunlaoghaire",
+   skills:["roundabouts", "observation"],
+   desc:"Sallynoggin → Glenageary roundabout → Killiney Rd → Ballinclea Rd → Cluny Grove → return",
+   tips:["Glenageary roundabout: signal and position early","Match 60km/h on Killiney Road — don't hold up traffic","Cluny Grove: check for cars before committing to reverse"],
+   addressWaypoints:["Sallynoggin+Road,+Dun+Laoghaire,+Co+Dublin","Glenageary+Road,+Glenageary,+Co+Dublin","Killiney+Road,+Killiney,+Co+Dublin","Ballinclea+Road,+Killiney,+Co+Dublin","Cluny+Grove,+Killiney,+Co+Dublin"]},
+  {id:"d4",name:"Bakers Corner Challenge",dur:20,diff:4,centre:"dunlaoghaire",
+   skills:["hillstart", "rightturns", "observation"],
+   desc:"Bakers Corner → Kill Ave → IADT → Ashgrove → Ardmore Park → Rochestown Ave → return",
+   tips:["Bakers Corner: DON'T go unless filter is green or gap is clear","Ardmore Park has mild hill — good for confidence on hill starts","Mini roundabouts: 2nd gear, yield to right, don't stop unnecessarily"],
+   addressWaypoints:["Kill+Avenue,+Dun+Laoghaire,+Co+Dublin","Ashgrove,+Dun+Laoghaire,+Co+Dublin","Ardmore+Park,+Dun+Laoghaire,+Co+Dublin","Rochestown+Avenue,+Dun+Laoghaire,+Co+Dublin","Sallynoggin+Road,+Dun+Laoghaire,+Co+Dublin"]},
+  {id:"d5",name:"Granitefield & Pearse",dur:28,diff:3,centre:"dunlaoghaire",
+   skills:["reversecorner", "roundabouts", "observation"],
+   desc:"Rochestown Ave → Granitefield → Woodlands Rd → reverse → Pearse area → return",
+   tips:["Auburn Road reverse: watch for cars behind — busy area","Keep 1m from parked cars at all times","Granitefield is a common alternative to Watsons for reverse"],
+   addressWaypoints:["Johnstown+Road,+Dun+Laoghaire,+Co+Dublin","Rochestown+Avenue,+Dun+Laoghaire,+Co+Dublin","Granitefield,+Dun+Laoghaire,+Co+Dublin","Pearse+Street,+Sallynoggin,+Co+Dublin"]},
+  {id:"d6",name:"Stradbrook Extended",dur:38,diff:4,centre:"dunlaoghaire",
+   skills:["lanechange", "roundabouts", "observation"],
+   desc:"Pottery Rd → Stradbrook roundabout → Deansgrange → Graduate roundabout → full loop",
+   tips:["Most Dún Laoghaire tests hit at least 2 of these 3 roundabouts","Plan your lane 100m ahead of each roundabout","Don't stop at roundabouts unless you must — progress matters"],
+   addressWaypoints:["Pottery+Road,+Dun+Laoghaire,+Co+Dublin","Stradbrook+Road,+Blackrock,+Co+Dublin","Deansgrange+Road,+Dun+Laoghaire,+Co+Dublin","Glenageary+Road,+Glenageary,+Co+Dublin","Sallynoggin+Road,+Dun+Laoghaire,+Co+Dublin"]},
+  {id:"d7",name:"Full Dún Laoghaire Simulation",dur:55,diff:5,centre:"dunlaoghaire",
+   skills:["observation"],
+   desc:"Bakers Corner, all 3 roundabouts, Watsons manoeuvres, Sallynoggin. Everything.",
+   tips:["Only after other Dún Laoghaire routes are solid","Practice at your test time for traffic familiarity","This is the full package — handle it, handle the test"],
+   addressWaypoints:["Kill+Avenue,+Dun+Laoghaire,+Co+Dublin","Monkstown+Farm,+Dun+Laoghaire,+Co+Dublin","Sallynoggin+Road,+Dun+Laoghaire,+Co+Dublin","Glenageary+Road,+Glenageary,+Co+Dublin","Rochestown+Avenue,+Dun+Laoghaire,+Co+Dublin"]},
+  {id:"m1",name:"Tyrrelstown Local",dur:10,diff:2,centre:"mulhuddart",
+   skills:["reversecorner", "turnabout", "junctions", "observation"],
+   desc:"Carlton Hotel → Church Rd → Tyrrelstown estates → manoeuvres → return. Confidence builder.",
+   tips:["STOP at the centre exit — visibility is poor, creep forward","2nd gear for speed ramps","Tyrrelstown estates are the gentle introduction — master these first"],
+   addressWaypoints:["Church+Road,+Tyrrelstown,+Dublin+15","Tyrrelstown+Boulevard,+Tyrrelstown,+Dublin+15","Tyrrelstown+Way,+Tyrrelstown,+Dublin+15"]},
+  {id:"m2",name:"Huntstown Estate",dur:19,diff:3,centre:"mulhuddart",
+   skills:["observation"],
+   desc:"Tyrrelstown → Huntstown → large speed ramps → narrow roads → manoeuvres → return",
+   tips:["2nd gear, 20km/h for the big ramps — brake gently before, accelerate after","On narrow roads: if hazard is your side, you yield","Reverse on bend: extra mirror checks, go very slowly"],
+   addressWaypoints:["Church+Road,+Tyrrelstown,+Dublin+15","Huntstown+Road,+Mulhuddart,+Dublin+15","Huntstown+Way,+Mulhuddart,+Dublin+15","Huntstown+Drive,+Mulhuddart,+Dublin+15"]},
+  {id:"m3",name:"N3 National Road",dur:16,diff:4,centre:"mulhuddart",
+   skills:["lanechange", "observation"],
+   desc:"Church Rd → N3 merge → 100km/h → exit → Mulhuddart Village → return. #1 fail zone.",
+   tips:["Build speed on the slip road — don't join at 60km/h","Merge at first safe gap — hesitation is worse than waiting","For N3 return right turn: check road markings, stay in RIGHT lane"],
+   addressWaypoints:["Church+Road,+Tyrrelstown,+Dublin+15","N3+Navan+Road,+Mulhuddart,+Dublin+15","Mulhuddart+Village,+Mulhuddart,+Dublin+15","Old+Navan+Road,+Mulhuddart,+Dublin+15"]},
+  {id:"m4",name:"Blanchardstown Roundabout",dur:21,diff:4,centre:"mulhuddart",
+   skills:["lanechange", "roundabouts", "observation"],
+   desc:"N3 → Blanchardstown Shopping Centre roundabout → Corduff → return",
+   tips:["Know your exit BEFORE entering the roundabout","Follow road markings painted on the surface","Don't panic at volume — commit to your lane and proceed"],
+   addressWaypoints:["Church+Road,+Tyrrelstown,+Dublin+15","N3+Navan+Road,+Mulhuddart,+Dublin+15","Blanchardstown+Shopping+Centre,+Dublin+15","Corduff+Road,+Blanchardstown,+Dublin+15"]},
+  {id:"m5",name:"Mulhuddart Village & Industrial",dur:21,diff:3,centre:"mulhuddart",
+   skills:["lanechange", "observation"],
+   desc:"Tyrrelstown → Mulhuddart Village → industrial estate → bus lane areas → return",
+   tips:["Watch for bus lane markings — don't drive in active bus lanes","When lanes merge: check mirrors, signal, merge smoothly","Industrial roads can be wide but stay in lane"],
+   addressWaypoints:["Church+Road,+Tyrrelstown,+Dublin+15","Mulhuddart+Village,+Mulhuddart,+Dublin+15","Old+Navan+Road,+Mulhuddart,+Dublin+15","Damastown+Road,+Mulhuddart,+Dublin+15"]},
+  {id:"m6",name:"Hartstown Extension",dur:29,diff:3,centre:"mulhuddart",
+   skills:["roundabouts", "observation"],
+   desc:"Tyrrelstown → Hartstown → Clonsilla area → residential manoeuvres → return",
+   tips:["Hartstown is quieter than Huntstown — good for building skills","School zones: be extra alert 8:30-9:30am and 2:30-3:30pm","Mini roundabouts: 2nd gear, yield right"],
+   addressWaypoints:["Church+Road,+Tyrrelstown,+Dublin+15","Hartstown+Road,+Hartstown,+Dublin+15","Clonsilla+Road,+Clonsilla,+Dublin+15","Hartstown+Avenue,+Hartstown,+Dublin+15"]},
+  {id:"m7",name:"Full Mulhuddart Simulation",dur:39,diff:5,centre:"mulhuddart",
+   skills:["observation"],
+   desc:"N3 at 100km/h, Blanchardstown roundabout, Huntstown manoeuvres, village. Everything.",
+   tips:["Only attempt after other Mulhuddart routes are solid","The N3 + Blanchardstown roundabout combo is the test's spine","If you nail this, test day is familiar territory"],
+   addressWaypoints:["Church+Road,+Tyrrelstown,+Dublin+15","N3+Navan+Road,+Mulhuddart,+Dublin+15","Blanchardstown+Shopping+Centre,+Dublin+15","Mulhuddart+Village,+Mulhuddart,+Dublin+15","Huntstown+Road,+Mulhuddart,+Dublin+15"]},
+];
+
+const DUR_FILTERS=[{id:"any",l:"Any time"},{id:"quick",l:"≤20 min"},{id:"short",l:"20–35 min"},{id:"med",l:"35–50 min"},{id:"long",l:"50+ min"}];
+const SORT_OPTS=[{id:"recommended",l:"Recommended"},{id:"shortest",l:"Shortest"},{id:"longest",l:"Longest"},{id:"hardest",l:"Hardest"}];
+
+/* ─── LOGIC ─── */
+const AVG=30,EDT=12;
+function hCtx(h){const p=Math.round((h/AVG)*100);if(h<EDT)return{tag:"Below EDT minimum",c:"#ef4444",p,n:`RSA requires ${EDT} EDT lessons. Average pass: ~${AVG} hours.`};if(h<20)return{tag:"Building foundations",c:"#f59e0b",p,n:`Past the EDT minimum. Average pass takes ~${AVG} hours.`};if(h<30)return{tag:"Good base",c:"#22c55e",p,n:`Approaching average. Comfort with specific skills matters more now.`};if(h<40)return{tag:"Well prepared",c:"#16a34a",p,n:`Above average. Focus on sharpening specific areas, not adding volume.`};return{tag:"Highly experienced",c:"#16a34a",p:Math.min(p,150),n:`Well beyond average. Route familiarity and composure are your edge.`}}
+function prof(hours,tf,fc){if(tf==="nodate")return{e:"🧭",h:"Explorer",s:"No pressure. Browse routes, log sessions, build confidence.",c:"#6366f1",t:"explore"};const u=tf==="thismonth",hh=hours>=20,mf=fc>=3;if(u&&hours<10)return{e:"🔴",h:"Red Zone",s:"Low hours, tight window. The most focused plan we can build — consider whether you need more runway.",c:"#ef4444",t:"redzone"};if(hh&&!mf)return{e:"🔒",h:"Consolidation",s:"Strong position. Focusing on route coverage and test-day confidence.",c:"#16a34a",t:"consolidation"};if(hh&&mf)return{e:"🎯",h:"Refinement",s:`Plenty of road time — now it's about precision. Targeting the ${fc} areas you flagged.`,c:"#0ea5e9",t:"refinement"};if(!hh&&!mf)return{e:"⚡",h:"Accelerator",s:"Quick learner, just needs road time. Maximising route coverage fast.",c:"#f59e0b",t:"accelerator"};return{e:"📐",h:"Foundation",s:"Building from the ground up. Easier routes first, then ramping the challenge.",c:"#8b5cf6",t:"foundation"}}
+function genPlan({routes,days,dur,focus,tf}){const wm={thismonth:4,onetwo:6,twothree:10,threePlus:14,exact:8,nodate:6};const tw=wm[tf]||6;const sc=routes.map(r=>{let s=100;const fm=r.skills.filter(k=>focus.includes(k)).length;s+=fm*30;s+=r.diff*5;return{...r,score:s,fm}}).sort((a,b)=>b.score-a.score);const weeks=[];for(let w=0;w<tw;w++){const sess=[];for(let d=0;d<days.length;d++){const sr=[];let tu=0,at=0,idx=(d+w*days.length)%sc.length;while(tu+15<dur&&at<sc.length){const r=sc[idx%sc.length];if(tu+r.dur<=dur+5){sr.push(r);tu+=r.dur}idx++;at++}if(!sr.length){const sh=[...sc].sort((a,b)=>a.dur-b.dur)[0];sr.push(sh);tu=sh.dur}sess.push({day:days[d],dl:DL[days[d]],routes:sr,time:tu,hasFocus:sr.some(r=>r.fm>0)})}weeks.push({n:w+1,sess})}return{weeks,tw,pw:days.length,ts:weeks.reduce((a,w)=>a+w.sess.length,0),fs:weeks.reduce((a,w)=>a+w.sess.filter(s=>s.hasFocus).length,0),eh:Math.round(weeks.reduce((a,w)=>a+w.sess.reduce((b,s)=>b+s.time,0),0)/60)}}
+
+
+
+/* ─── PRIMITIVES ─── */
+function Slide({children,dir,k}){const[on,s]=useState(false);useEffect(()=>{s(false);const t=setTimeout(()=>s(true),25);return()=>clearTimeout(t)},[k]);const a=dir>0?"slideL":dir<0?"slideR":"fadeUp";return<div style={{width:"100%",flex:1,display:"flex",flexDirection:"column",animation:on?`${a} 0.42s cubic-bezier(0.16,1,0.3,1) forwards`:"none",opacity:on?undefined:0}}>{children}</div>}
+function Cd({children,onClick,sel,style={},$}){return<div onClick={onClick} style={{background:sel?$.sfS:$.sf,border:`1px solid ${sel?$.bdA:$.bd}`,borderRadius:16,padding:"18px 20px",cursor:onClick?"pointer":"default",transition:"background 0.3s, border-color 0.3s, box-shadow 0.3s",boxShadow:sel?$.shA:$.sh,...style}}>{children}</div>}
+function Tk({$,size=22}){return<div style={{width:size,height:size,borderRadius:size/2,background:$.ck,display:"flex",alignItems:"center",justifyContent:"center",boxShadow:"0 2px 8px rgba(22,163,74,0.25)",flexShrink:0,animation:"popTick 0.32s cubic-bezier(0.34,1.56,0.64,1)"}}><svg width={size*0.55} height={size*0.55} viewBox="0 0 12 12" fill="none"><path d="M2.5 6L5 8.5L9.5 3.5" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg></div>}
+function Rg({$}){return<div style={{width:22,height:22,borderRadius:11,border:`1.5px solid ${$.bd}`,flexShrink:0}}/>}
+function Hd({children,$}){return<h2 style={{fontSize:28,fontWeight:700,color:$.txH,margin:0,letterSpacing:"-0.025em",lineHeight:1.15}}>{children}</h2>}
+function Sb({children,$}){return<p style={{fontSize:14,color:$.txS,marginTop:10,lineHeight:1.55}}>{children}</p>}
+function Pn({color}){return<svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M10.5 1.5L12.5 3.5L4.5 11.5L1.5 12.5L2.5 9.5L10.5 1.5Z" stroke={color} strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/></svg>}
+function PBtn({label,onClick,disabled,$}){return<button className="press" onClick={onClick} disabled={disabled} style={{width:"100%",padding:"17px",borderRadius:14,border:"none",background:disabled?$.tr:$.btn,color:disabled?$.txM:"#fff",fontSize:15,fontWeight:600,cursor:disabled?"default":"pointer",boxShadow:disabled?"none":$.btnSh,transition:"all 0.3s",letterSpacing:"-0.01em"}}>{label}</button>}
+const LOGO_SRC="data:image/png;base64,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";
+function LPlate({$,size=30}){return<img src={LOGO_SRC} alt="Test Day" width={size} height={size} style={{objectFit:"contain"}}/>}
+function Stepper({count,onInc,onDec,$}){const[pop,sP]=useState(false);const inc=()=>{onInc();sP(true);setTimeout(()=>sP(false),300)};return<div style={{display:"flex",alignItems:"center",gap:0,flexShrink:0}}><button className="press" onClick={e=>{e.stopPropagation();onDec()}} disabled={count<=0} style={{width:28,height:28,borderRadius:8,border:`1px solid ${$.stBd}`,background:$.stBg,cursor:count>0?"pointer":"default",display:"flex",alignItems:"center",justifyContent:"center",opacity:count>0?1:0.3,fontSize:16,color:$.txS,fontWeight:300,lineHeight:1,padding:0}}>−</button><div style={{minWidth:32,textAlign:"center",fontSize:14,fontWeight:700,color:count>0?$.g:$.txM,animation:pop?"countPop 0.25s ease":"none"}}>{count}</div><button className="press" onClick={e=>{e.stopPropagation();inc()}} style={{width:28,height:28,borderRadius:8,border:`1px solid ${count>0?$.gb:$.stBd}`,background:count>0?$.gs:$.stBg,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",fontSize:16,color:count>0?$.g:$.txS,fontWeight:300,lineHeight:1,padding:0,transition:"all 0.2s"}}>+</button></div>}
+
+/* ─── ALPHA BANNER ─── */
+function AlphaBanner({$,onDismiss}){return<div style={{padding:"10px 20px",display:"flex",alignItems:"center",justifyContent:"space-between",background:$.alBg,borderBottom:`1px solid ${$.alBd}`,animation:"slideDown 0.3s ease"}}><div style={{display:"flex",alignItems:"center",gap:8}}><span style={{fontSize:10,fontWeight:700,color:$.alTx,letterSpacing:"0.08em",textTransform:"uppercase",padding:"2px 8px",borderRadius:6,border:`1px solid ${$.alBd}`,background:$.bg}}>Alpha</span><span style={{fontSize:12,color:$.txS}}>Help us improve — </span><a href={FEEDBACK_URL} target="_blank" rel="noopener" style={{fontSize:12,fontWeight:600,color:$.alTx}}>give feedback</a></div><button onClick={onDismiss} style={{background:"none",border:"none",cursor:"pointer",color:$.txM,fontSize:16,lineHeight:1,padding:"4px"}}>×</button></div>}
+function FeedbackFab({$}){return<a href={FEEDBACK_URL} target="_blank" rel="noopener" className="press" style={{position:"fixed",right:16,bottom:76,zIndex:25,width:44,height:44,borderRadius:22,background:$.btn,boxShadow:$.btnSh,display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer"}}><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M1 17L2.5 12L12.5 2C13.3 1.2 14.7 1.2 15.5 2L16 2.5C16.8 3.3 16.8 4.7 16 5.5L6 15.5L1 17Z" stroke="#fff" strokeWidth="1.4" strokeLinejoin="round"/><path d="M11 3.5L14.5 7" stroke="#fff" strokeWidth="1.4"/></svg></a>}
+function FeedbackMilestone({$,onDismiss}){return<div style={{position:"fixed",inset:0,zIndex:50,display:"flex",alignItems:"center",justifyContent:"center",background:"rgba(0,0,0,0.5)",backdropFilter:"blur(4px)",WebkitBackdropFilter:"blur(4px)",animation:"fadeIn 0.3s ease"}} onClick={onDismiss}><div onClick={e=>e.stopPropagation()} style={{width:"calc(100% - 48px)",maxWidth:360,padding:"32px 24px",borderRadius:20,background:$.bg,border:`1px solid ${$.bd}`,boxShadow:"0 24px 64px rgba(0,0,0,0.2)",textAlign:"center",animation:"fadeUp 0.35s ease both"}}><div style={{fontSize:36,marginBottom:12}}>🎉</div><h3 style={{fontSize:18,fontWeight:700,color:$.txH,marginBottom:8}}>Week 1 complete!</h3><p style={{fontSize:14,color:$.txS,lineHeight:1.5,marginBottom:20}}>You're one of our first testers — your feedback shapes what Test Day becomes. Got 2 minutes?</p><a href={FEEDBACK_URL} target="_blank" rel="noopener" className="press" style={{display:"block",padding:"14px 20px",borderRadius:12,background:$.btn,color:"#fff",fontSize:14,fontWeight:600,textDecoration:"none",boxShadow:$.btnSh,marginBottom:10}}>Share feedback</a><button onClick={onDismiss} className="press" style={{background:"none",border:"none",cursor:"pointer",fontSize:13,color:$.txM,padding:"8px 16px"}}>Maybe later</button></div></div>}
+
+/* ─── WELCOME — horizontal logo + name ─── */
+function Welcome({onStart,$,dk,toggleDark}){return<div style={{flex:1,display:"flex",flexDirection:"column",justifyContent:"center",padding:"0 28px",position:"relative"}}>
+  <button className="press" onClick={toggleDark} aria-label="Toggle theme" style={{position:"absolute",top:8,right:4,width:34,height:34,borderRadius:10,background:$.sf,border:`1px solid ${$.bd}`,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",color:$.txS,transition:"all 0.2s"}}>{dk?<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="3.5" stroke="currentColor" strokeWidth="1.3"/><path d="M8 2v1.5M8 12.5V14M2 8h1.5M12.5 8H14M3.76 3.76l1.06 1.06M11.18 11.18l1.06 1.06M3.76 12.24l1.06-1.06M11.18 4.82l1.06-1.06" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/></svg>:<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M14 9.5A6 6 0 016.5 2 6.5 6.5 0 1014 9.5z" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/></svg>}</button>
+  <div style={{animation:"welcomeFade 0.6s cubic-bezier(0.16,1,0.3,1) 0.1s both"}}>
+    <div style={{display:"flex",alignItems:"center",gap:14,marginBottom:20}}><LPlate $={$} size={48}/><span style={{fontSize:34,fontWeight:700,color:$.txH,letterSpacing:"-0.03em"}}>Test Day</span></div>
+    <p style={{fontSize:16,color:$.txS,lineHeight:1.6,maxWidth:320,animation:"welcomeFade 0.6s cubic-bezier(0.16,1,0.3,1) 0.25s both"}}>Personalised practice plans for your Dublin driving test. 43 verified routes across 7 test centres.</p>
+  </div>
+  <div style={{marginTop:40,maxWidth:320,animation:"welcomeFade 0.6s cubic-bezier(0.16,1,0.3,1) 0.4s both"}}><PBtn label="Get started" onClick={onStart} $={$}/></div>
+  <div style={{display:"flex",gap:24,marginTop:32,animation:"welcomeFade 0.6s cubic-bezier(0.16,1,0.3,1) 0.55s both"}}>{[{v:"7",l:"test centres"},{v:"43",l:"routes"},{v:"Free",l:"while in alpha"}].map((s,i)=><div key={i}><div style={{fontSize:18,fontWeight:700,color:$.tx}}>{s.v}</div><div style={{fontSize:11,color:$.txM,marginTop:2}}>{s.l}</div></div>)}</div>
+</div>}
+
+/* ─── WIZARD STEPS ─── */
+function S1({sel,onSel,$,dir}){return<Slide dir={dir} k="s1"><div style={{textAlign:"center",marginBottom:36,paddingTop:12}}><Hd $={$}>Where's your test?</Hd></div><div className="cascade" style={{display:"flex",flexDirection:"column",gap:6}}>{CENTRES.map(c=><Cd key={c.id} sel={sel===c.id} onClick={()=>onSel(c.id)} $={$} style={{padding:"16px 20px"}}><div style={{display:"flex",alignItems:"center",justifyContent:"space-between"}}><div style={{display:"flex",alignItems:"baseline",gap:8}}><span style={{fontSize:16,fontWeight:600,color:$.tx}}>{c.name}</span><span style={{fontSize:12,color:$.txM}}>{c.routes} routes</span></div>{sel===c.id?<Tk $={$}/>:<Rg $={$}/>}</div></Cd>)}</div></Slide>}
+
+function S2({sel,exDate,onSel,onDate,$,dir}){const ref=useRef(null);return<Slide dir={dir} k="s2"><div style={{textAlign:"center",marginBottom:36,paddingTop:12}}><Hd $={$}>When's the big day?</Hd><Sb $={$}>This shapes the intensity of your plan</Sb></div><Cd sel={sel==="exact"} onClick={()=>{onSel("exact");if(ref.current)try{ref.current.showPicker()}catch(e){ref.current.focus()}}} $={$} style={{padding:"16px 20px",marginBottom:14}}><div style={{display:"flex",alignItems:"center",justifyContent:"space-between"}}><div><div style={{fontSize:16,fontWeight:600,color:$.tx}}>I know my date</div><div style={{fontSize:13,color:$.txM,marginTop:3}}>{sel==="exact"&&exDate?new Date(exDate+"T00:00:00").toLocaleDateString("en-IE",{day:"numeric",month:"long",year:"numeric"}):"Select your test date"}</div></div><div style={{position:"relative"}}><input ref={ref} type="date" value={exDate||""} onChange={e=>onDate(e.target.value)} min={new Date().toISOString().split("T")[0]} style={{position:"absolute",top:0,right:0,width:40,height:30,opacity:0,cursor:"pointer"}}/><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="14" rx="2.5" stroke={sel==="exact"?$.g:$.txM} strokeWidth="1.4"/><path d="M2 8.5H18M6 2V5M14 2V5" stroke={sel==="exact"?$.g:$.txM} strokeWidth="1.4" strokeLinecap="round"/></svg></div></div></Cd><div style={{display:"flex",alignItems:"center",gap:14,margin:"4px 0 14px",padding:"0 4px"}}><div style={{flex:1,height:1,background:$.dv}}/><span style={{fontSize:10,color:$.txM,fontWeight:600,letterSpacing:"0.08em",textTransform:"uppercase"}}>or estimate</span><div style={{flex:1,height:1,background:$.dv}}/></div><div className="cascade" style={{display:"flex",flexDirection:"column",gap:6}}>{TFS.map(tf=><Cd key={tf.id} sel={sel===tf.id} onClick={()=>onSel(tf.id)} $={$} style={{padding:"16px 20px"}}><div style={{display:"flex",alignItems:"center",justifyContent:"space-between"}}><span style={{fontSize:16,fontWeight:600,color:$.tx}}>{tf.l}</span>{sel===tf.id?<Tk $={$}/>:<Rg $={$}/>}</div></Cd>)}</div><div style={{textAlign:"center",marginTop:24}}><button className="press" onClick={()=>onSel("nodate")} style={{background:"none",border:"none",cursor:"pointer",fontSize:13,color:sel==="nodate"?$.g:$.txM,fontWeight:500,padding:"10px 18px",borderRadius:10,opacity:sel==="nodate"?1:0.4,transition:"all 0.3s"}}>{sel==="nodate"?"✓ Just exploring":"I don't have a date yet"}</button></div></Slide>}
+
+function S3({hours,onSet,$,dir}){const pct=Math.min(hours/50,1)*100,ctx=hCtx(hours),dh=useRoll(hours,120),{ref,start,drag}=useSlider(hours,0,50,onSet);return<Slide dir={dir} k="s3"><div style={{textAlign:"center",marginBottom:36,paddingTop:12}}><Hd $={$}>Hours behind the wheel?</Hd><Sb $={$}>Lessons, practice, everything — roughly</Sb></div><Cd $={$} style={{padding:"40px 28px"}}><div style={{textAlign:"center",marginBottom:36}}><span style={{fontSize:72,fontWeight:300,color:$.txH,letterSpacing:"-0.03em",lineHeight:1}}>{dh}</span><span style={{fontSize:15,color:$.txM,marginLeft:6}}>hours</span></div><div ref={ref} onMouseDown={start} onTouchStart={start} style={{position:"relative",height:48,cursor:"pointer",touchAction:"none",userSelect:"none"}}><div style={{position:"absolute",top:22,left:0,right:0,height:4,borderRadius:2,background:$.tr}}/><div style={{position:"absolute",top:22,left:0,width:`${pct}%`,height:4,borderRadius:2,background:$.fl,transition:drag?"none":"width 0.12s ease-out"}}><div style={{position:"absolute",right:0,top:-2,width:8,height:8,borderRadius:4,background:$.g,animation:"pulseGlow 2s infinite"}}/></div><div style={{position:"absolute",top:14,left:`${pct}%`,width:22,height:22,borderRadius:11,background:$.thBg,border:`2.5px solid ${$.thBd}`,boxShadow:`0 0 0 5px ${$.gg}, 0 2px 8px rgba(0,0,0,0.2)`,transition:drag?"none":"left 0.12s ease-out",transform:`translateX(-50%) scale(${drag?1.15:1})`}}/></div><div style={{display:"flex",justifyContent:"space-between",marginTop:4,padding:"0 2px"}}>{[0,10,20,30,40,50].map(m=><span key={m} style={{fontSize:10,color:$.txF,fontWeight:500}}>{m}</span>)}</div><div style={{marginTop:28,padding:"16px 18px",borderRadius:12,background:$.bar,border:`1px solid ${$.bdS}`}}><div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:10}}><span style={{fontSize:12,fontWeight:700,color:ctx.c}}>{ctx.tag}</span><span style={{fontSize:11,color:$.txM}}>{ctx.p}% of avg</span></div><div style={{height:3,borderRadius:2,background:$.bar,overflow:"hidden"}}><div style={{height:"100%",borderRadius:2,width:`${Math.min(ctx.p,100)}%`,background:$.barF,animation:"barGrow 0.8s ease-out"}}/></div><p style={{fontSize:12,color:$.txS,margin:"10px 0 0",lineHeight:1.55}}>{ctx.n}</p></div></Cd><div style={{display:"flex",justifyContent:"center",gap:8,marginTop:22}}>{[5,10,15,20,30].map(q=><button key={q} className="press" onClick={()=>onSet(q)} style={{padding:"8px 15px",borderRadius:20,border:`1px solid ${hours===q?$.bdA:$.bd}`,background:hours===q?$.sfS:"transparent",fontSize:13,fontWeight:500,color:hours===q?$.g:$.txS,cursor:"pointer",transition:"all 0.3s"}}>{q}h</button>)}</div></Slide>}
+
+function S4({sel,onTog,$,dir}){return<Slide dir={dir} k="s4"><div style={{textAlign:"center",marginBottom:32,paddingTop:12}}><Hd $={$}>Any focus points?</Hd><Sb $={$}>Tap the areas you want extra practice on</Sb></div><div className="grid-cascade" style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:8}}>{SKILLS.map(s=>{const on=sel.includes(s.id);return<button key={s.id} className="press-deep" onClick={()=>onTog(s.id)} style={{position:"relative",padding:"22px 14px 18px",borderRadius:16,border:`1.5px solid ${on?$.chAb:$.chBd}`,background:on?$.chA:$.chBg,cursor:"pointer",transition:"background 0.3s, border-color 0.3s, box-shadow 0.3s",display:"flex",flexDirection:"column",alignItems:"center",gap:8,boxShadow:on?$.shA:"none",textAlign:"center"}}>{on&&<div style={{position:"absolute",top:9,right:9}}><Tk $={$} size={18}/></div>}<div style={{fontSize:24,lineHeight:1,color:on?$.g:$.txM,transition:"color 0.3s, transform 0.3s",transform:on?"scale(1.15)":"scale(1)"}}>{s.i}</div><span style={{fontSize:13,fontWeight:600,color:on?$.tx:$.txS,lineHeight:1.2}}>{s.l}</span></button>})}</div><p style={{textAlign:"center",fontSize:13,color:$.txM,marginTop:24}}>{sel.length===0?"No focus points — your plan will cover all areas evenly.":`${sel.length} focus point${sel.length>1?"s":""} — your plan will prioritise these.`}</p></Slide>}
+
+function S5({days,onDay,dur,onDur,preset,onPre,$,dir}){return<Slide dir={dir} k="s5"><div style={{textAlign:"center",marginBottom:32,paddingTop:12}}><Hd $={$}>When can you practice?</Hd><Sb $={$}>Tap your available days</Sb></div><div style={{display:"flex",gap:6,marginBottom:18,justifyContent:"center"}}>{PRESETS.map(p=><button key={p.id} className="press" onClick={()=>onPre(p.id)} style={{padding:"8px 18px",borderRadius:20,background:preset===p.id?$.prA:$.prBg,border:`1px solid ${preset===p.id?$.prAb:$.prBd}`,fontSize:12,fontWeight:600,cursor:"pointer",color:preset===p.id?$.g:$.txM,transition:"all 0.3s"}}>{p.l}</button>)}</div><Cd $={$} style={{padding:"26px 18px"}}><div style={{display:"flex",gap:6}}>{DL.map((d,i)=>{const on=days.includes(i);return<button key={i} className="press-deep" onClick={()=>onDay(i)} style={{flex:1,padding:"16px 0",borderRadius:12,background:on?$.dyA:$.dyBg,border:`1.5px solid ${on?$.dyAb:$.dyBd}`,color:on?$.g:$.txM,fontSize:13,fontWeight:600,cursor:"pointer",transition:"all 0.2s",display:"flex",flexDirection:"column",alignItems:"center",gap:5}}><span>{d}</span><div style={{width:5,height:5,borderRadius:3,background:on?$.g:"transparent"}}/></button>})}</div><p style={{fontSize:12,color:$.txM,marginTop:14,textAlign:"center"}}>{days.length===0?"Select at least one day":`${days.length} day${days.length>1?"s":""} per week`}</p><div style={{height:1,background:$.dv,margin:"20px 0"}}/><div style={{textAlign:"center"}}><div style={{fontSize:10,fontWeight:700,color:$.txS,textTransform:"uppercase",letterSpacing:"0.08em",marginBottom:14}}>Time per session</div><div style={{display:"flex",gap:6,justifyContent:"center"}}>{DURS_W.map(d=><button key={d.id} className="press" onClick={()=>onDur(d.id)} style={{padding:"10px 14px",borderRadius:10,minWidth:48,background:dur===d.id?$.dyA:$.dyBg,border:`1px solid ${dur===d.id?$.dyAb:$.dyBd}`,color:dur===d.id?$.g:$.txM,fontSize:13,fontWeight:500,cursor:"pointer",transition:"all 0.25s"}}>{d.l}</button>)}</div></div></Cd></Slide>}
+
+/* ─── SUMMARY ─── */
+function StatC({label,val,onEdit,$}){return<div className="press" onClick={onEdit} style={{flex:1,padding:"16px 14px",borderRadius:14,background:$.sf,border:`1px solid ${$.bdS}`,cursor:"pointer",position:"relative"}}><div style={{position:"absolute",top:10,right:10,opacity:0.4}}><Pn color={$.ed}/></div><div style={{fontSize:10,fontWeight:700,color:$.txM,textTransform:"uppercase",letterSpacing:"0.08em"}}>{label}</div><div style={{fontSize:16,fontWeight:700,color:$.tx,marginTop:5}}>{val}</div></div>}
+
+function Sum({centre,tf,exDate,hours,days,dur,focus,onEdit,onReset,onBuild,$,dir}){const cd=CENTRES.find(c=>c.id===centre),pr=prof(hours,tf,focus.length),isX=tf==="nodate";const pace=`${days.length}×/wk · ${DURS_W.find(d=>d.id===dur)?.l||"1hr"}`;const tl=tf==="exact"&&exDate?new Date(exDate+"T00:00:00").toLocaleDateString("en-IE",{day:"numeric",month:"short"}):tf==="nodate"?"—":TFS.find(x=>x.id===tf)?.l||"";
+  return<Slide dir={dir} k="sum"><div style={{textAlign:"center",padding:"20px 0 12px"}}><div style={{fontSize:56,lineHeight:1,marginBottom:16,animation:"bounceHero 0.65s cubic-bezier(0.34,1.56,0.64,1)"}}>{pr.e}</div><h2 style={{fontSize:32,fontWeight:700,color:$.txH,margin:0,letterSpacing:"-0.025em",animation:"fadeUp 0.5s 0.12s both"}}>{pr.h}</h2></div>
+  {pr.t!=="explore"&&<div style={{display:"flex",justifyContent:"center",margin:"14px 0 18px",animation:"fadeUp 0.4s 0.22s both"}}><div style={{display:"inline-flex",alignItems:"center",gap:8,padding:"6px 16px",borderRadius:20,border:`1px solid ${pr.c}33`,background:`${pr.c}08`}}><div style={{width:6,height:6,borderRadius:3,background:pr.c}}/><span style={{fontSize:11,fontWeight:700,color:pr.c,letterSpacing:"0.07em",textTransform:"uppercase"}}>{pr.t}</span></div></div>}
+  <div style={{animation:"fadeUp 0.5s 0.28s both"}}><Cd $={$} style={{padding:"20px 24px",marginBottom:18}}><p style={{fontSize:14,color:$.txB,lineHeight:1.7,margin:0,textAlign:"center"}}>{pr.s}</p></Cd></div>
+  {focus.length>0&&<div onClick={()=>onEdit(3)} style={{display:"flex",flexWrap:"wrap",gap:6,marginBottom:18,justifyContent:"center",cursor:"pointer",animation:"fadeUp 0.5s 0.32s both"}}>{focus.map(sid=>{const sk=SKILLS.find(s=>s.id===sid);return<span key={sid} style={{padding:"5px 11px",borderRadius:10,fontSize:12,fontWeight:500,background:$.gs,border:`1px solid ${$.gb}`,color:$.g}}>{sk?.l}</span>})}<span style={{padding:"5px 8px",borderRadius:10,color:$.txM,display:"flex",alignItems:"center"}}><Pn color={$.ed}/></span></div>}
+  <div style={{display:"flex",gap:8,marginBottom:14,animation:"fadeUp 0.5s 0.36s both"}}><StatC label="Centre" val={cd?.name} onEdit={()=>onEdit(0)} $={$}/><StatC label="Hours" val={`${hours}`} onEdit={()=>onEdit(2)} $={$}/><StatC label="Test" val={tl} onEdit={()=>onEdit(1)} $={$}/></div>
+  {!isX&&<div className="press" onClick={()=>onEdit(4)} style={{padding:"14px 18px",borderRadius:14,background:$.sf,border:`1px solid ${$.bdS}`,marginBottom:20,display:"flex",alignItems:"center",justifyContent:"center",gap:10,cursor:"pointer",position:"relative",animation:"fadeUp 0.5s 0.4s both"}}><div style={{position:"absolute",top:10,right:12,opacity:0.4}}><Pn color={$.ed}/></div><span style={{fontSize:10,fontWeight:700,color:$.txM,textTransform:"uppercase",letterSpacing:"0.08em"}}>Pace</span><span style={{fontSize:14,fontWeight:600,color:$.tx}}>{pace}</span></div>}
+  <div style={{marginTop:8,paddingBottom:8}}><PBtn label="Build My Plan" onClick={onBuild} $={$}/><div style={{textAlign:"center",marginTop:16}}><button className="press" onClick={onReset} style={{background:"none",border:"none",cursor:"pointer",fontSize:13,color:$.txM,fontWeight:500,padding:"10px 18px",opacity:0.5}}>Start over</button></div></div></Slide>;
+}
+
+/* ─── LOADING ─── */
+function Load({$,onDone}){const[ph,sPh]=useState(0),[pg,sPg]=useState(0);const phrases=["Analysing your profile","Scoring routes","Building your schedule","Optimising for focus points","Finalising"];useEffect(()=>{let p=0;const t=setInterval(()=>{p+=Math.random()*14+5;if(p>=100){p=100;clearInterval(t);setTimeout(onDone,350)}sPg(Math.min(p,100));sPh(Math.min(Math.floor(p/22),phrases.length-1))},180);return()=>clearInterval(t)},[]);return<div style={{flex:1,display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",padding:"0 40px",textAlign:"center"}}><div style={{position:"relative",width:80,height:80,marginBottom:44}}><div style={{width:80,height:80,borderRadius:40,background:`radial-gradient(circle at 40% 40%,${$.g}40,${$.g}08)`,animation:"breathe 2s ease-in-out infinite"}}/><div style={{position:"absolute",top:10,left:10,width:60,height:60,borderRadius:30,border:`2px solid ${$.g}30`,borderTopColor:$.g,animation:"spinOrb 1.2s linear infinite"}}/><div style={{position:"absolute",top:"50%",left:"50%",transform:"translate(-50%,-50%)"}}><LPlate $={$} size={28}/></div></div><div style={{fontSize:14,fontWeight:500,color:$.tx,marginBottom:10,minHeight:22}}>{phrases[ph]}</div><div style={{width:"100%",maxWidth:200,height:3,borderRadius:2,background:$.tr,overflow:"hidden"}}><div style={{height:"100%",borderRadius:2,background:$.fl,width:`${pg}%`,transition:"width 0.3s ease-out"}}/></div></div>}
+
+function Burst({color}){const ps=useMemo(()=>Array.from({length:24},(_,i)=>({id:i,dx:(Math.random()-0.5)*220,dy:(Math.random()-0.7)*200,sz:Math.random()*7+3,dl:Math.random()*0.3,dr:Math.random()*0.6+0.5,cl:[color,color+"aa",color+"55","#ffffff"][Math.floor(Math.random()*4)]})),[]);return<div style={{position:"absolute",top:"50%",left:"50%",pointerEvents:"none",zIndex:100}}>{ps.map(p=><div key={p.id} style={{position:"absolute",width:p.sz,height:p.sz,borderRadius:p.sz/2,background:p.cl,animation:`particle ${p.dr}s ${p.dl}s cubic-bezier(0,0.9,0.3,1) forwards`,"--px":`${p.dx}px`,"--py":`${p.dy}px`}}/>)}</div>}
+
+/* ─── PLAN TAB ─── */
+function PlanTab({plan,pr,focus,onEdit,onReset,logs,onLog,centre,$}){const[expOverride,sExpOverride]=useState(null);const[burst,sBurst]=useState(true);const[expRoute,sExpRoute]=useState(null);useEffect(()=>{const t=setTimeout(()=>sBurst(false),1400);return()=>clearTimeout(t)},[]);const totalLogged=Object.values(logs).reduce((a,v)=>a+v,0);const progressPct=plan.ts>0?Math.min((totalLogged/plan.ts)*100,100):0;const aS=useRoll(plan.ts,700),aF=useRoll(plan.fs,700),aH=useRoll(plan.eh,700),aL=useRoll(totalLogged,400);
+  const weekDone=useCallback(wk=>wk.sess.every((_,si)=>(logs[`${wk.n}-${si}`]||0)>=1),[logs]);
+  const currentWeek=useMemo(()=>{const first=plan.weeks.find(w=>!weekDone(w));return first?first.n:plan.weeks[plan.weeks.length-1].n},[plan.weeks,weekDone]);
+  const prevWeekRef=useRef(currentWeek);
+  useEffect(()=>{if(currentWeek!==prevWeekRef.current){sExpOverride(null);prevWeekRef.current=currentWeek}},[currentWeek]);
+  const exp=expOverride===null?currentWeek:expOverride===0?null:expOverride;
+  const weekRefs=useRef({});
+  const lastTapped=useRef(null);
+  const sExp=v=>{const wkNum=v===null?0:v;sExpOverride(wkNum);lastTapped.current=v||lastTapped.current;const scrollTarget=v||lastTapped.current;if(scrollTarget){setTimeout(()=>{const el=weekRefs.current[scrollTarget];if(el)el.scrollIntoView({behavior:"smooth",block:"nearest"})},v?120:50)}};
+
+  return<div style={{animation:"fadeUp 0.4s ease both"}}><div style={{textAlign:"center",padding:"16px 0 8px",position:"relative"}}>{burst&&<Burst color={pr.c}/>}<div style={{display:"flex",alignItems:"center",justifyContent:"center",gap:12}}><span style={{fontSize:36,lineHeight:1}}>{pr.e}</span><div><h2 style={{fontSize:26,fontWeight:700,color:$.txH,margin:0,letterSpacing:"-0.025em",textAlign:"left"}}>Your Plan</h2><div style={{display:"flex",alignItems:"center",gap:6,marginTop:3}}><div style={{width:6,height:6,borderRadius:3,background:pr.c}}/><span style={{fontSize:11,fontWeight:700,color:pr.c,letterSpacing:"0.07em",textTransform:"uppercase"}}>{pr.t}</span><span style={{fontSize:11,color:$.txM}}>·</span><span style={{fontSize:11,color:$.txS}}>{plan.tw}wk · {plan.pw}×/wk</span></div></div></div></div>
+  <div style={{display:"flex",gap:8,margin:"14px 0"}}><button className="press" onClick={onEdit} style={{flex:1,padding:"12px 16px",borderRadius:12,border:`1px solid ${$.btn2Bd}`,background:$.btn2,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",gap:6,fontSize:13,fontWeight:600,color:$.txS}}><Pn color={$.txS}/>Edit setup</button><button className="press" onClick={onReset} style={{padding:"12px 16px",borderRadius:12,border:`1px solid ${$.btn2Bd}`,background:$.btn2,cursor:"pointer",fontSize:13,fontWeight:600,color:$.txM}}>Reset</button></div>
+  <div style={{padding:"18px 20px",borderRadius:16,background:$.sf,border:`1px solid ${$.bd}`,marginBottom:16}}><div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:10}}><span style={{fontSize:13,fontWeight:600,color:$.tx}}>Progress</span><span style={{fontSize:13,fontWeight:700,color:$.g}}>{aL} of {plan.ts} sessions</span></div><div style={{height:6,borderRadius:3,background:$.bar,overflow:"hidden"}}><div style={{height:"100%",borderRadius:3,background:$.barF,width:`${progressPct}%`,transition:"width 0.5s ease-out"}}/></div><div style={{display:"flex",justifyContent:"space-around",textAlign:"center",marginTop:16}}>{[{l:"Total",v:aS},{l:"Focus",v:aF},{l:"Est. hours",v:aH}].map((s,i)=><div key={i}><div style={{fontSize:22,fontWeight:700,color:$.tx,letterSpacing:"-0.02em"}}>{s.v}</div><div style={{fontSize:10,fontWeight:600,color:$.txM,textTransform:"uppercase",letterSpacing:"0.06em",marginTop:2}}>{s.l}</div></div>)}</div></div>
+  <div className="cascade" style={{display:"flex",flexDirection:"column",gap:8}}>{plan.weeks.map(wk=>{const open=exp===wk.n;const fc=wk.sess.filter(s=>s.hasFocus).length;const wkL=wk.sess.reduce((a,_,si)=>a+(logs[`${wk.n}-${si}`]||0),0);const done=weekDone(wk);return<div key={wk.n} ref={el=>weekRefs.current[wk.n]=el} style={{borderRadius:16,overflow:"hidden",border:`1px solid ${open?$.bdA:$.bd}`,background:open?$.sfS:$.sf,transition:"all 0.35s",scrollMarginTop:12}}><button className="press" onClick={()=>sExp(open?null:wk.n)} style={{width:"100%",padding:"16px 18px",background:"none",border:"none",cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"space-between"}}><div style={{display:"flex",alignItems:"center",gap:12}}><div style={{width:30,height:30,borderRadius:9,background:done?$.ck:wkL>0?$.gs:$.sf,border:`1px solid ${done?"transparent":wkL>0?$.gb:$.bd}`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:12,fontWeight:700,color:done?"#fff":wkL>0?$.g:$.txM,transition:"all 0.3s"}}>{done?<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7L6 10L11 4" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>:wk.n}</div><div style={{textAlign:"left"}}><div style={{display:"flex",alignItems:"center",gap:6}}><span style={{fontSize:15,fontWeight:600,color:done?$.g:$.tx}}>{done?"Week "+wk.n+" ✓":"Week "+wk.n}</span>{wk.n===currentWeek&&!done&&<span style={{fontSize:9,fontWeight:700,color:$.g,background:$.gs,border:`1px solid ${$.gb}`,padding:"1px 6px",borderRadius:6,letterSpacing:"0.05em"}}>CURRENT</span>}</div><div style={{fontSize:12,color:$.txM,marginTop:2}}>{wk.sess.length} session{wk.sess.length>1?"s":""}{fc>0&&<span style={{color:$.g}}> · {fc} focus</span>}{wkL>0&&!done&&<span style={{color:$.g}}> · {wkL} logged</span>}{done&&<span style={{color:$.g}}> · Complete</span>}</div></div></div><svg width="14" height="14" viewBox="0 0 14 14" fill="none" style={{transform:open?"rotate(180deg)":"rotate(0)",transition:"transform 0.35s"}}><path d="M3 5L7 9L11 5" stroke={$.txM} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></button>
+  {open&&<div style={{padding:"0 14px 14px",animation:"fadeDown 0.3s ease"}}><div style={{display:"flex",flexDirection:"column",gap:8}}>{wk.sess.map((sess,si)=>{const lk=`${wk.n}-${si}`,lc=logs[lk]||0;return<div key={si} style={{padding:"16px",borderRadius:12,background:lc>0?$.rD:sess.hasFocus?`${$.g}06`:$.sf,border:`1px solid ${lc>0?$.rDb:sess.hasFocus?$.gb:$.bdS}`}}><div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:12}}><div style={{display:"flex",alignItems:"center",gap:8}}><span style={{fontSize:14,fontWeight:600,color:$.tx}}>{sess.dl}</span>{sess.hasFocus&&<span style={{padding:"2px 8px",borderRadius:6,fontSize:10,fontWeight:700,background:$.gs,border:`1px solid ${$.gb}`,color:$.g}}>Focus</span>}<span style={{fontSize:12,color:$.txM}}>{sess.time} min</span></div><Stepper count={lc} onInc={()=>onLog(lk,1)} onDec={()=>onLog(lk,-1)} $={$}/></div>{sess.routes.map((rt,ri)=>{const rOpen=expRoute===`${wk.n}-${si}-${ri}`;const fullRoute=ROUTES.find(x=>x.id===rt.id);return<div key={ri} style={{borderTop:ri>0?`1px solid ${$.dv}`:"none",marginTop:ri>0?8:0}}>
+<div onClick={()=>sExpRoute(rOpen?null:`${wk.n}-${si}-${ri}`)} style={{display:"flex",alignItems:"center",gap:10,padding:ri>0?"8px 0 0":"0",cursor:"pointer"}}>
+<div style={{width:6,height:6,borderRadius:3,flexShrink:0,background:rt.fm>0?$.g:$.txF}}/><div style={{flex:1}}><div style={{display:"flex",alignItems:"center",gap:6}}><span style={{fontSize:13,fontWeight:500,color:$.tx}}>{rt.name}</span><svg width="10" height="10" viewBox="0 0 10 10" fill="none" style={{flexShrink:0,transform:rOpen?"rotate(180deg)":"rotate(0)",transition:"transform 0.3s"}}><path d="M2 3.5L5 6.5L8 3.5" stroke={$.txM} strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/></svg></div><div style={{display:"flex",gap:6,marginTop:3}}><span style={{fontSize:11,color:$.txM}}>{rt.dur} min</span><span style={{color:$.txF}}>·</span><span style={{fontSize:11,color:$.txM,letterSpacing:1}}>{"●".repeat(rt.diff)}{"○".repeat(5-rt.diff)}</span></div>
+{rt.fm>0&&<div style={{display:"flex",gap:4,marginTop:4,flexWrap:"wrap"}}>{rt.skills.filter(s=>focus.includes(s)).map(sid=>{const sk=SKILLS.find(s=>s.id===sid);return<span key={sid} style={{padding:"1px 6px",borderRadius:6,fontSize:9,fontWeight:600,background:$.fpBg,border:`1px solid ${$.fpBd}`,color:$.fpTx}}>{sk?.l}</span>})}</div>}
+</div></div>
+{rOpen&&fullRoute&&<div style={{padding:"12px 0 4px 16px",animation:"fadeDown 0.3s ease"}}>
+<p style={{fontSize:12,color:$.txS,lineHeight:1.6,marginBottom:12}}>{fullRoute.desc}</p>
+{fullRoute.tips.map((tip,ti)=><div key={ti} style={{display:"flex",gap:8,marginBottom:8,alignItems:"flex-start"}}><div style={{width:4,height:4,borderRadius:2,background:$.g,flexShrink:0,marginTop:5}}/><span style={{fontSize:12,color:$.txM,lineHeight:1.5}}>{tip}</span></div>)}
+<a href={buildMapsUrl(fullRoute)} target="_blank" rel="noopener" className="press" style={{display:"inline-flex",alignItems:"center",gap:6,padding:"8px 14px",borderRadius:10,background:$.gs,border:`1px solid ${$.gb}`,color:$.g,fontSize:12,fontWeight:600,textDecoration:"none",marginTop:4}}><svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M8 1C5.2 1 3 3.2 3 6c0 3.5 5 9 5 9s5-5.5 5-9c0-2.8-2.2-5-5-5zm0 7a2 2 0 110-4 2 2 0 010 4z" fill="currentColor"/></svg>Open in Maps</a>
+</div>}
+</div>})}</div>})}</div></div>}</div>})}</div><div style={{height:20}}/></div>;
+}
+
+/* ─── ROUTE BROWSER — with expandable detail ─── */
+function RouteBrowser({focus,routePx,onRoutePx,centre,$}){
+  const[durF,sDurF]=useState("any");const[skillF,sSkillF]=useState(null);const[sort,sSort]=useState("recommended");
+  const[expanded,sExpanded]=useState(null);
+  const cd=CENTRES.find(c=>c.id===centre);
+  const filtered=useMemo(()=>{const shared=["raheny","killester"];const match=shared.includes(centre)?shared:[centre];let r=ROUTES.filter(x=>match.includes(x.centre));if(durF==="quick")r=r.filter(x=>x.dur<=20);else if(durF==="short")r=r.filter(x=>x.dur>20&&x.dur<=35);else if(durF==="med")r=r.filter(x=>x.dur>35&&x.dur<=50);else if(durF==="long")r=r.filter(x=>x.dur>50);if(skillF)r=r.filter(x=>x.skills.includes(skillF));if(sort==="shortest")r.sort((a,b)=>a.dur-b.dur);else if(sort==="longest")r.sort((a,b)=>b.dur-a.dur);else if(sort==="hardest")r.sort((a,b)=>b.diff-a.diff);else r.sort((a,b)=>{const pa=routePx[a.id]||0,pb=routePx[b.id]||0,fa=a.skills.filter(s=>focus.includes(s)).length,fb=b.skills.filter(s=>focus.includes(s)).length;if(pa===0&&pb>0)return-1;if(pb===0&&pa>0)return 1;if(fa!==fb)return fb-fa;return b.diff-a.diff});return r},[centre,durF,skillF,sort,routePx,focus]);
+  const started=filtered.filter(r=>(routePx[r.id]||0)>0).length,totalPx=Object.values(routePx).reduce((a,v)=>a+v,0);
+  const totalForCentre=useMemo(()=>{const shared=["raheny","killester"];const match=shared.includes(centre)?shared:[centre];return ROUTES.filter(x=>match.includes(x.centre)).length},[centre]);
+
+  return<div style={{animation:"fadeUp 0.4s ease both"}}><div style={{marginBottom:16,paddingTop:12}}><div style={{display:"flex",alignItems:"baseline",justifyContent:"space-between"}}><h2 style={{fontSize:26,fontWeight:700,color:$.txH,margin:0,letterSpacing:"-0.025em"}}>Routes</h2><span style={{fontSize:12,color:$.txM,fontWeight:500}}>{cd?.name} · {totalForCentre} routes</span></div><div style={{display:"flex",gap:12,marginTop:8}}><span style={{fontSize:13,color:$.txS}}>{started} started</span><span style={{color:$.txF}}>·</span><span style={{fontSize:13,color:$.txS}}>{totalPx} total practices</span></div></div>
+  <div style={{display:"flex",gap:6,marginBottom:12,overflowX:"auto",paddingBottom:2}}>{DUR_FILTERS.map(f=><button key={f.id} className="press" onClick={()=>sDurF(f.id)} style={{padding:"7px 13px",borderRadius:16,fontSize:12,fontWeight:500,whiteSpace:"nowrap",background:durF===f.id?$.sfS:"transparent",border:`1px solid ${durF===f.id?$.bdA:$.bd}`,color:durF===f.id?$.g:$.txS,cursor:"pointer",flexShrink:0}}>{f.l}</button>)}</div>
+  <div style={{display:"flex",gap:6,marginBottom:12,overflowX:"auto",paddingBottom:2,flexWrap:"wrap"}}>{(focus.length>0?SKILLS.filter(s=>focus.includes(s.id)):SKILLS).map(s=>{const on=skillF===s.id;return<button key={s.id} className="press" onClick={()=>sSkillF(on?null:s.id)} style={{padding:"6px 12px",borderRadius:16,fontSize:11,fontWeight:600,whiteSpace:"nowrap",background:on?$.chA:"transparent",border:`1px solid ${on?$.chAb:$.bd}`,color:on?$.g:$.txM,cursor:"pointer",flexShrink:0,display:"flex",alignItems:"center",gap:4}}><span>{s.i}</span>{s.l}</button>})}</div>
+  <div style={{display:"flex",gap:6,marginBottom:18}}>{SORT_OPTS.map(o=><button key={o.id} className="press" onClick={()=>sSort(o.id)} style={{padding:"6px 11px",borderRadius:12,fontSize:11,fontWeight:500,background:sort===o.id?$.sfS:"transparent",border:`1px solid ${sort===o.id?$.bdA:$.bdS}`,color:sort===o.id?$.g:$.txM,cursor:"pointer"}}>{o.l}</button>)}</div>
+  {filtered.length===0&&<div style={{textAlign:"center",padding:"40px 20px"}}><p style={{fontSize:14,color:$.txM}}>No routes match these filters.</p><button className="press" onClick={()=>{sDurF("any");sSkillF(null)}} style={{marginTop:12,background:"none",border:"none",cursor:"pointer",fontSize:13,color:$.g,fontWeight:500}}>Clear filters</button></div>}
+
+  <div className="cascade" style={{display:"flex",flexDirection:"column",gap:8}}>{filtered.map(r=>{const px=routePx[r.id]||0;const hf=r.skills.some(s=>focus.includes(s));const isOpen=expanded===r.id;
+    return<div key={r.id} style={{borderRadius:16,background:px>0?$.rD:$.sf,border:`1px solid ${isOpen?$.bdA:px>0?$.rDb:$.bd}`,transition:"background 0.3s, border-color 0.3s",overflow:"hidden"}}>
+      {/* Header — always visible */}
+      <div onClick={()=>sExpanded(isOpen?null:r.id)} style={{padding:"16px",cursor:"pointer",display:"flex",alignItems:"flex-start",justifyContent:"space-between"}}>
+        <div style={{flex:1,minWidth:0}}>
+          <div style={{display:"flex",alignItems:"center",gap:8}}><span style={{fontSize:15,fontWeight:600,color:$.tx}}>{r.name}</span><svg width="12" height="12" viewBox="0 0 12 12" fill="none" style={{flexShrink:0,transform:isOpen?"rotate(180deg)":"rotate(0)",transition:"transform 0.3s"}}><path d="M2.5 4.5L6 8L9.5 4.5" stroke={$.txM} strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/></svg></div>
+          <div style={{display:"flex",gap:8,marginTop:4,alignItems:"center"}}><span style={{fontSize:13,fontWeight:600,color:$.txB}}>{r.dur} min</span><span style={{color:$.txF}}>·</span><span style={{fontSize:12,color:$.txM,letterSpacing:1}}>{"●".repeat(r.diff)}{"○".repeat(5-r.diff)}</span>{hf&&<><span style={{color:$.txF}}>·</span><span style={{fontSize:11,fontWeight:600,color:$.g}}>Focus</span></>}</div>
+          <div style={{display:"flex",gap:5,flexWrap:"wrap",marginTop:8}}>{r.skills.map(sid=>{const iF=focus.includes(sid);const sk=SKILLS.find(s=>s.id===sid);return<span key={sid} style={{padding:"3px 9px",borderRadius:8,fontSize:11,fontWeight:500,background:iF?$.fpBg:$.bar,border:`1px solid ${iF?$.fpBd:$.bdS}`,color:iF?$.fpTx:$.txM}}>{sk?.l}</span>})}</div>
+        </div>
+        <div onClick={e=>e.stopPropagation()}><Stepper count={px} onInc={()=>onRoutePx(r.id,1)} onDec={()=>onRoutePx(r.id,-1)} $={$}/></div>
+      </div>
+
+      {/* Detail panel — expanded */}
+      {isOpen&&<div style={{padding:"0 16px 16px",animation:"fadeDown 0.35s ease"}}>
+        <div style={{height:1,background:$.dv,marginBottom:16}}/>
+        <p style={{fontSize:13,color:$.txB,lineHeight:1.65,marginBottom:16}}>{r.desc}</p>
+        <div style={{marginBottom:14}}>
+          <div style={{fontSize:10,fontWeight:700,color:$.txS,textTransform:"uppercase",letterSpacing:"0.08em",marginBottom:10}}>Things to know</div>
+          {r.tips.map((tip,i)=><div key={i} style={{display:"flex",gap:10,marginBottom:10,alignItems:"flex-start"}}>
+            <div style={{width:5,height:5,borderRadius:3,background:$.g,flexShrink:0,marginTop:6}}/>
+            <span style={{fontSize:13,color:$.txS,lineHeight:1.55}}>{tip}</span>
+          </div>)}
+        </div>
+        <a href={buildMapsUrl(r)} target="_blank" rel="noopener" className="press" style={{display:"flex",alignItems:"center",justifyContent:"center",gap:8,padding:"13px 18px",borderRadius:12,background:$.btn,color:"#fff",fontSize:13,fontWeight:600,boxShadow:$.btnSh,textDecoration:"none"}}><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1C5.2 1 3 3.2 3 6c0 3.5 5 9 5 9s5-5.5 5-9c0-2.8-2.2-5-5-5zm0 7a2 2 0 110-4 2 2 0 010 4z" fill="#fff"/></svg>Open in Maps</a>
+      </div>}
+    </div>
+  })}</div><div style={{height:20}}/></div>;
+}
+
+/* ─── BOTTOM TABS ─── */
+function TabBar({tab,onTab,$}){return<div style={{position:"fixed",bottom:0,left:"50%",transform:"translateX(-50%)",width:"100%",maxWidth:440,zIndex:20,background:$.tabBg,borderTop:`1px solid ${$.tabBd}`,backdropFilter:"blur(20px)",WebkitBackdropFilter:"blur(20px)",padding:"8px 0 calc(8px + env(safe-area-inset-bottom))",display:"flex"}}>{[{id:"plan",l:"Plan",icon:<svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="4" width="14" height="13" rx="2" stroke="currentColor" strokeWidth="1.4"/><path d="M3 8h14M7 2v4M13 2v4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/></svg>},{id:"routes",l:"Routes",icon:<svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 17c0-4 3-5 6-8s6-4 6-7" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/><circle cx="4" cy="17" r="1.5" fill="currentColor"/><circle cx="16" cy="3" r="1.5" fill="currentColor"/></svg>}].map(t=><button key={t.id} className="press" onClick={()=>onTab(t.id)} style={{flex:1,display:"flex",flexDirection:"column",alignItems:"center",gap:3,padding:"6px 0",background:"none",border:"none",cursor:"pointer",color:tab===t.id?$.g:$.txM,transition:"color 0.2s"}}>{t.icon}<span style={{fontSize:10,fontWeight:600}}>{t.l}</span></button>)}</div>}
+
+/* ─── APP ─── */
+function App(){
+  const[dk,toggleDark]=useDark();const $=useTheme(dk);
+  useEffect(()=>{document.documentElement.style.backgroundColor=$.bg;document.body.style.backgroundColor=$.bg},[$.bg]);
+  const[step,sStep]=useState(-1);const[dir,sDir]=useState(1);const[centre,sCentre]=useState(null);const[tf,sTf]=useState(null);const[exDate,sExDate]=useState("");const[hours,sHours]=useState(12);const[focus,sFocus]=useState([]);const[days,sDays]=useState([0,2,4,5]);const[dur,sDur]=useState(60);const[preset,sPreset]=useState("steady");const[fading,sFading]=useState(false);const[ret,sRet]=useState(false);const[plan,sPlan]=useState(null);const[loading,sLoading]=useState(false);const[logs,sLogs]=useState({});const[routePx,sRoutePx]=useState({});const[tab,sTab]=useState("plan");const[showBanner,sShowBanner]=useState(true);const[milestone,sMilestone]=useState(null);const milestoneShown=useRef({});
+  const noDate=tf==="nodate",total=noDate?4:5;
+  const go=useCallback((s,d=1)=>{if(fading)return;sDir(d);sFading(true);setTimeout(()=>{sStep(s);sFading(false)},130)},[fading]);
+  const next=useCallback(()=>{if(ret){sRet(false);go(5,1);return}if(noDate&&step===3)go(5,1);else go(step+1,1)},[ret,noDate,step,go]);
+  const back=useCallback(()=>{if(ret){sRet(false);go(5,-1);return}if(step<=0)return;if(noDate&&step===5)go(3,-1);else go(step-1,-1)},[ret,step,noDate,go]);
+  const autoAdv=fn=>v=>{fn(v);setTimeout(()=>{if(ret){sRet(false);go(5,1)}else go(step+1,1)},320)};
+  const handleTF=v=>sTf(v);const handleDate=v=>{sExDate(v);sTf("exact")};
+  const togFocus=id=>sFocus(p=>p.includes(id)?p.filter(s=>s!==id):[...p,id]);
+  const togDay=d=>{sDays(p=>p.includes(d)?p.filter(x=>x!==d):[...p,d].sort());sPreset(null)};
+  const handlePre=id=>{const p=PRESETS.find(pr=>pr.id===id);if(p){sDays(p.d);sPreset(id)}};
+  const editStep=s=>{sRet(true);go(s,-1)};
+  const build=()=>{sLoading(true);go(6,1)};
+  const centreRoutes=useMemo(()=>{const shared=["raheny","killester"];const match=shared.includes(centre)?shared:[centre];return ROUTES.filter(r=>match.includes(r.centre))},[centre]);
+  const onLoaded=()=>{sPlan(genPlan({routes:centreRoutes,days,dur,focus,tf,hours}));sLoading(false);sLogs({});go(7,1);sTab("plan")};
+  const editFromPlan=()=>{sPlan(null);go(5,-1)};
+  const logSession=(key,delta)=>{sLogs(prev=>{const cur=prev[key]||0;const nv=Math.max(0,cur+delta);const n={...prev};if(nv===0)delete n[key];else n[key]=nv;return n})};
+  useEffect(()=>{if(!plan)return;plan.weeks.forEach(wk=>{const done=wk.sess.every((_,si)=>(logs[`${wk.n}-${si}`]||0)>=1);if(done&&!milestoneShown.current[wk.n]){milestoneShown.current[wk.n]=true;if(wk.n===1)sMilestone("week1")}})},[logs,plan]);
+  const logRoute=(id,delta)=>{sRoutePx(prev=>{const cur=prev[id]||0;const nv=Math.max(0,cur+delta);const n={...prev};if(nv===0)delete n[id];else n[id]=nv;return n})};
+  const reset=()=>{sStep(-1);sDir(1);sCentre(null);sTf(null);sExDate("");sHours(12);sFocus([]);sDays([0,2,4,5]);sDur(60);sPreset("steady");sRet(false);sPlan(null);sLoading(false);sLogs({});sRoutePx({});sTab("plan")};
+  const showProg=step>=0&&step<5;const dStep=step>=0&&step<5?step+1:null;const showBtn=step>=1&&step<=4;const btnL=ret?"Back to summary":"Continue";const canGo=step===1?(tf!==null):step===4?days.length>0:true;const showTabs=step===7&&plan;
+
+  return<div data-theme-wrap="" style={{width:"100%",maxWidth:440,margin:"0 auto",minHeight:"100vh",minHeight:"100dvh",background:$.bg,fontFamily:"'DM Sans',sans-serif",display:"flex",flexDirection:"column",position:"relative"}}>
+    <div style={{position:"fixed",top:0,left:0,right:0,bottom:0,background:$.bgG,pointerEvents:"none",zIndex:0}}/>
+    {showBanner&&step>=0&&<div style={{position:"relative",zIndex:3}}><AlphaBanner $={$} onDismiss={()=>sShowBanner(false)}/></div>}
+    {step>=0&&<div style={{position:"relative",zIndex:2,padding:"20px 24px 0",display:"flex",alignItems:"center",justifyContent:"space-between"}}><div style={{display:"flex",alignItems:"center",gap:12}}>{step>0&&step<5&&<button className="press" onClick={back} style={{width:38,height:38,borderRadius:11,background:$.sf,border:`1px solid ${$.bd}`,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",color:$.txS}}><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8L10 13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></button>}<div style={{display:"flex",alignItems:"center",gap:9}}><LPlate $={$} size={30}/><span style={{fontSize:16,fontWeight:600,color:$.tx,letterSpacing:"-0.015em"}}>Test Day</span></div></div><div style={{display:"flex",alignItems:"center",gap:10}}>{dStep&&<span style={{fontSize:12,color:$.txM,fontWeight:500}}>{ret?"Editing":`${dStep}/${total}`}</span>}<button className="press" onClick={toggleDark} aria-label="Toggle theme" style={{width:34,height:34,borderRadius:10,background:$.sf,border:`1px solid ${$.bd}`,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",color:$.txS,transition:"all 0.2s"}}>{dk?<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="3.5" stroke="currentColor" strokeWidth="1.3"/><path d="M8 2v1.5M8 12.5V14M2 8h1.5M12.5 8H14M3.76 3.76l1.06 1.06M11.18 11.18l1.06 1.06M3.76 12.24l1.06-1.06M11.18 4.82l1.06-1.06" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/></svg>:<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M14 9.5A6 6 0 016.5 2 6.5 6.5 0 1014 9.5z" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/></svg>}</button></div></div>}
+    {showProg&&<div style={{position:"relative",zIndex:2,padding:"16px 24px 6px"}}><div style={{height:2.5,borderRadius:2,background:$.tr,overflow:"hidden"}}><div style={{height:"100%",borderRadius:2,background:$.fl,width:ret?"100%":`${((step+1)/total)*100}%`,transition:"width 0.5s cubic-bezier(0.16,1,0.3,1)"}}/></div></div>}
+    <div style={{position:"relative",zIndex:1,flex:1,padding:step>=5||step===-1?"16px 20px 40px":"16px 20px 130px",paddingBottom:showTabs?"80px":undefined,display:"flex",flexDirection:"column",opacity:fading?0:1,transition:"opacity 0.13s ease",overflowY:"auto",WebkitOverflowScrolling:"touch"}}>
+      {step===-1&&<Welcome onStart={()=>go(0,1)} $={$} dk={dk} toggleDark={toggleDark}/>}
+      {step===0&&<S1 sel={centre} onSel={autoAdv(sCentre)} $={$} dir={dir}/>}
+      {step===1&&<S2 sel={tf} exDate={exDate} onSel={handleTF} onDate={handleDate} $={$} dir={dir}/>}
+      {step===2&&<S3 hours={hours} onSet={sHours} $={$} dir={dir}/>}
+      {step===3&&<S4 sel={focus} onTog={togFocus} $={$} dir={dir}/>}
+      {step===4&&<S5 days={days} onDay={togDay} dur={dur} onDur={sDur} preset={preset} onPre={handlePre} $={$} dir={dir}/>}
+      {step===5&&<Sum centre={centre} tf={tf} exDate={exDate} hours={hours} days={days} dur={dur} focus={focus} onEdit={editStep} onReset={reset} onBuild={build} $={$} dir={dir}/>}
+      {step===6&&loading&&<Load $={$} onDone={onLoaded}/>}
+      {step===7&&plan&&tab==="plan"&&<PlanTab plan={plan} pr={prof(hours,tf,focus.length)} focus={focus} onEdit={editFromPlan} onReset={reset} logs={logs} onLog={logSession} centre={centre} $={$}/>}
+      {step===7&&plan&&tab==="routes"&&<RouteBrowser focus={focus} routePx={routePx} onRoutePx={logRoute} centre={centre} $={$}/>}
+    </div>
+    {step>=0&&step<=5&&<div style={{position:"relative",zIndex:1,textAlign:"center",padding:"12px 20px 20px"}}><span style={{fontSize:11,color:$.txF}}>© {new Date().getFullYear()} Test Day · v{VERSION}</span></div>}
+    {showBtn&&<div style={{position:"fixed",bottom:0,left:"50%",transform:"translateX(-50%)",width:"100%",maxWidth:440,padding:"16px 24px 34px",background:$.fade,zIndex:10}}><PBtn label={btnL} onClick={next} disabled={!canGo} $={$}/></div>}
+    {showTabs&&<TabBar tab={tab} onTab={sTab} $={$}/>}
+    {showTabs&&<FeedbackFab $={$}/>}
+    {milestone&&<FeedbackMilestone $={$} onDismiss={()=>sMilestone(null)}/>}
+  </div>;
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
+</script>
+</body>
+</html>
